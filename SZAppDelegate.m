@@ -213,7 +213,7 @@
 -(IBAction)runTests:(id)sender
 {
     NSString* transcript = [xcodeController runUnitTestBundle:[bundleButton titleOfSelectedItem]];
-    NSLog(@"TRANSCRIPT: %@", @"foo", transcript);
+    (void)transcript;
 }
 
 @end
