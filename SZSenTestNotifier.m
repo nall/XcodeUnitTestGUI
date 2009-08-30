@@ -6,22 +6,14 @@
 //  Copyright 2009 STUNTAZ!!!. All rights reserved.
 //
 
-// To enable SenTest distributed notifications, you should add
-// SZSentTestNotifier.m into your unit test target. Then issue the following
-// command in Terminal:
-//
-// defaults write -globalDomain SenTestObserverClass -string "SZSenTestNotifier"
-
 #import <SenTestingKit/SenTestingKit.h>
 
 @interface SZSenTestNotifier : SenTestObserver
 {
-    
 }
 @end
 
 @implementation SZSenTestNotifier
-
 -(void)postNotificationName:(NSString*) aName
                      userInfo:(NSDictionary*) userInfo
 {
@@ -68,6 +60,7 @@
     [self postNotificationName:[aNotification name]
                         object:[aNotification object]
                       userInfo:[aNotification userInfo]];
+    [SenTestLog testSuiteDidStart:aNotification];
 }
 
 
@@ -76,6 +69,7 @@
     [self postNotificationName:[aNotification name]
                         object:[aNotification object]
                       userInfo:[aNotification userInfo]];
+    [SenTestLog testSuiteDidStop:aNotification];
 }
 
 
@@ -84,6 +78,8 @@
     [self postNotificationName:[aNotification name]
                         object:[aNotification object]
                       userInfo:[aNotification userInfo]];
+
+    [SenTestLog testCaseDidStart:aNotification];
 }
 
 
@@ -92,6 +88,8 @@
     [self postNotificationName:[aNotification name]
                         object:[aNotification object]
                       userInfo:[aNotification userInfo]];
+
+    [SenTestLog testCaseDidStop:aNotification];
 }
 
 
@@ -100,6 +98,8 @@
     [self postNotificationName:[aNotification name]
                         object:[aNotification object]
                       userInfo:[aNotification userInfo]];
+
+    [SenTestLog testCaseDidFail:aNotification];
 }
 
 @end
