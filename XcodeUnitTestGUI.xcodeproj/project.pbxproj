@@ -6,17 +6,30 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAppleScriptBuildPhase section */
+		A497A2B6104AC9D2004805E1 /* AppleScript */ = {
+			isa = PBXAppleScriptBuildPhase;
+			buildActionMask = 2147483647;
+			contextName = "";
+			files = (
+				A497A2AF104AC9B5004805E1 /* XcodeUnitTestGUI.applescript in AppleScript */,
+			);
+			isSharedContext = 0;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXAppleScriptBuildPhase section */
+
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A4704C78104A4F56005B6A5D /* SZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704C77104A4F56005B6A5D /* SZAppDelegate.m */; };
-		A4704C99104A61B5005B6A5D /* XcodeUnitTestSelector.scpt in Resources */ = {isa = PBXBuildFile; fileRef = A4704C85104A56D3005B6A5D /* XcodeUnitTestSelector.scpt */; };
 		A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D39104A7B55005B6A5D /* SZXCodeController.m */; };
 		A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */; };
 		A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */; };
 		A497A249104AB31B004805E1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A497A248104AB31B004805E1 /* SenTestingKit.framework */; };
+		A497A2AF104AC9B5004805E1 /* XcodeUnitTestGUI.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +45,6 @@
 		8D1107320486CEB800E47090 /* XcodeUnitTestGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeUnitTestGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4704C76104A4F56005B6A5D /* SZAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZAppDelegate.h; sourceTree = "<group>"; };
 		A4704C77104A4F56005B6A5D /* SZAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZAppDelegate.m; sourceTree = "<group>"; };
-		A4704C85104A56D3005B6A5D /* XcodeUnitTestSelector.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.scpt; name = XcodeUnitTestSelector.scpt; path = /Users/nall/Library/Scripts/XcodeUnitTestSelector.scpt; sourceTree = "<absolute>"; };
 		A4704D38104A7B55005B6A5D /* SZXCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZXCodeController.h; sourceTree = "<group>"; };
 		A4704D39104A7B55005B6A5D /* SZXCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZXCodeController.m; sourceTree = "<group>"; };
 		A4704D3B104A7C20005B6A5D /* SZApplescriptInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZApplescriptInterface.h; sourceTree = "<group>"; };
@@ -40,6 +52,7 @@
 		A4704DFE104AA850005B6A5D /* SZTestSuiteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTestSuiteDataSource.h; sourceTree = "<group>"; };
 		A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestSuiteDataSource.m; sourceTree = "<group>"; };
 		A497A248104AB31B004805E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
+		A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = XcodeUnitTestGUI.applescript; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +134,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A4704C85104A56D3005B6A5D /* XcodeUnitTestSelector.scpt */,
+				A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -145,6 +158,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "XcodeUnitTestGUI" */;
 			buildPhases = (
+				A497A2B6104AC9D2004805E1 /* AppleScript */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
@@ -181,7 +195,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4704C99104A61B5005B6A5D /* XcodeUnitTestSelector.scpt in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 			);

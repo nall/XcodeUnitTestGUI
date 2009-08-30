@@ -16,7 +16,9 @@
     if(self != nil)
     {
         // TODO: Check if XCode is running
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"XcodeUnitTestSelector" ofType:@"scpt"];
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"XcodeUnitTestGUI"
+                                                         ofType:@"scpt"
+                                                    inDirectory:@"Scripts"];
         if (path != nil)
         {
             NSURL* url = [NSURL fileURLWithPath:path];
@@ -25,7 +27,15 @@
                 scriptInterface = [[SZApplescriptInterface alloc] init];
                 script = [[scriptInterface loadScript:url] retain];
             }
-        }           
+            else
+            {
+                NSLog(@"Can't create URL");
+            }
+        }
+        else
+        {
+            NSLog(@"Can't locate script");
+        }
     }
     return self;
 }
