@@ -8,6 +8,7 @@
 
 #import "SZAppDelegate.h"
 #include <objc/objc-runtime.h>
+#include <SenTestingKit/SenTestingKit.h>
 
 @implementation SZAppDelegate
 
@@ -26,6 +27,51 @@
                                                repeats:YES];
     [runLoop addTimer:timer forMode:NSDefaultRunLoopMode];
     
+    [[NSDistributedNotificationCenter defaultCenter] addObserver: self
+                                                        selector:@selector(testStarted:)
+                                                            name:SenTestCaseDidStartNotification
+                                                          object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver: self
+                                                        selector:@selector(testStopped:)
+                                                            name:SenTestCaseDidStopNotification
+                                                          object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver: self
+                                                        selector:@selector(testFailed:)
+                                                            name:SenTestCaseDidFailNotification
+                                                          object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver: self
+                                                        selector:@selector(suiteStarted:)
+                                                            name:SenTestSuiteDidStartNotification
+                                                          object:nil];
+    [[NSDistributedNotificationCenter defaultCenter] addObserver: self
+                                                        selector:@selector(suiteStopped:)
+                                                            name:SenTestSuiteDidStopNotification
+                                                          object:nil];
+}
+
+-(void)testStarted:(NSNotification*)theNotification
+{
+    NSLog(@"test started: %@", theNotification);
+}
+
+-(void)testStopped:(NSNotification*)theNotification
+{
+    NSLog(@"test stopped: %@", theNotification);
+}
+
+-(void)testFailed:(NSNotification*)theNotification
+{
+    NSLog(@"test failed: %@", theNotification);
+}
+
+-(void)suiteStarted:(NSNotification*)theNotification
+{
+    NSLog(@"suite started: %@", theNotification);
+}
+
+-(void)suiteStopped:(NSNotification*)theNotification
+{
+    NSLog(@"suite stopped: %@", theNotification);
 }
 
 -(void)applicationWillTerminate:(NSNotification*)theNotification
@@ -143,6 +189,8 @@
             NSString* methName = [NSString stringWithCString:methNameC];
             if([methName hasPrefix:@"test"])
             {
+                
+                // TODO: Check out using SenTestCase::testInvocations
                 NSLog(@"\tTEST: %@", methName);                
                 [[methods lastObject] addObject:methName];
             }
@@ -158,7 +206,7 @@
 -(IBAction)runTests:(id)sender
 {
     NSString* transcript = [xcodeController runUnitTestBundle:[bundleButton titleOfSelectedItem]];
-    NSLog(@"TRANSCRIPT: %@", transcript);
+    NSLog(@"TRANSCRIPT: %@", @"foo", transcript);
 }
 
 @end

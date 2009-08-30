@@ -1,1 +1,11 @@
 GUI to manage unit tests in XCode
+
+To enable SenTest distributed notifications, you should add
+SZSentTestNotifier.[hm] into your unit test target. Then issue the following
+command in Terminal:
+
+defaults write -globalDomain SenTestObserverClass -string "SZSenTestNotifier"
+
+to remove this notifier use:
+
+defaults delete -globalDomain SenTestObserverClass

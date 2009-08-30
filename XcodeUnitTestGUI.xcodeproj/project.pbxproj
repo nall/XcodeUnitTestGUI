@@ -16,6 +16,7 @@
 		A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D39104A7B55005B6A5D /* SZXCodeController.m */; };
 		A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */; };
 		A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */; };
+		A497A249104AB31B004805E1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A497A248104AB31B004805E1 /* SenTestingKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZApplescriptInterface.m; sourceTree = "<group>"; };
 		A4704DFE104AA850005B6A5D /* SZTestSuiteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTestSuiteDataSource.h; sourceTree = "<group>"; };
 		A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestSuiteDataSource.m; sourceTree = "<group>"; };
+		A497A248104AB31B004805E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				A497A249104AB31B004805E1 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +104,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				A497A248104AB31B004805E1 /* SenTestingKit.framework */,
 			);
 			name = XcodeUnitTestGUI;
 			sourceTree = "<group>";
