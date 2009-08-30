@@ -41,7 +41,7 @@ static NSString* const kszSenTestAllTests = @"All tests";
                                                             name:SenTestCaseDidStopNotification
                                                           object:nil];
     [[NSDistributedNotificationCenter defaultCenter] addObserver: self
-                                                        selector:@selector(TestFailed:)
+                                                        selector:@selector(testFailed:)
                                                             name:SenTestCaseDidFailNotification
                                                           object:nil];
     [[NSDistributedNotificationCenter defaultCenter] addObserver: self
@@ -102,7 +102,6 @@ static NSString* const kszSenTestAllTests = @"All tests";
         {
             for(SZTestDescriptor* test in [dataSource.tests objectAtIndex:i])
             {
-                NSLog(@"%@ <> %@", test, testName);
                 if([[test name] isEqualToString:testName])
                 {
                     test.state = hadFailures ? TestFailed : TestPassed;                                    
