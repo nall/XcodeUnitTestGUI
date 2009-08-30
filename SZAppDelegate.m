@@ -15,11 +15,13 @@
 static NSString* const kszSenTestAllTests = @"All tests";
 
 @implementation SZAppDelegate
+@synthesize isBuilding;
 
 -(void)applicationDidFinishLaunching:(NSNotification*)theNotification
 {
     xcodeController = [[SZXCodeController alloc] init];
     queue = [[NSOperationQueue alloc] init];
+    isBuilding = NO;
     
     NSRunLoop* runLoop = [NSRunLoop currentRunLoop];
     NSDate* nextTime = [NSDate dateWithTimeIntervalSinceNow:1.0];
@@ -229,11 +231,10 @@ static NSString* const kszSenTestAllTests = @"All tests";
 -(void)runTestsThread
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-
     NSString* transcript = [xcodeController runUnitTestBundle:[bundleButton titleOfSelectedItem]];
     (void)transcript;
-    
     [pool release];
+    self.isBuilding = NO;
 }
 
 // Do this to avoid instantiating objects
@@ -304,6 +305,37 @@ static NSString* const kszSenTestAllTests = @"All tests";
     [outlineView reloadData];
 }
 
+-(NSString*)generateCommandLine
+{
+    NSMutableString* string = [NSMutableString stringWithString:
+                               @"-SenTestObserverClass SZSenTestNotifier -XcodeUnitTestGUI "];
+    for(SZTestDescriptor* suite in dataSource.suites)
+    {
+        const NSInteger state = [dataSource suiteState:suite.index];
+        if(state == NSOnState)
+        {
+            [string appendFormat:@"%@,", suite.name];
+        }
+        else if(state == NSMixedState)
+        {
+            for(SZTestDescriptor* test in [dataSource.tests objectAtIndex:suite.index])
+            {
+                if(test.enabled)
+                {
+                    [string appendFormat:@"%@/%@,", suite.name, test.name];
+                }
+            }
+        }
+        else
+        {
+            // No tests selected in this test suite
+        }
+    }
+    
+    // Trim last comma
+    return [string substringToIndex:[string length] - 1];
+}
+
 -(IBAction)bundleChanged:(id)sender
 {
     if([bundles count] > 0)
@@ -314,9 +346,21 @@ static NSString* const kszSenTestAllTests = @"All tests";
 
 -(IBAction)runTests:(id)sender
 {
+    self.isBuilding = YES;
+
     [dataSource invalidateStates];
     [outlineView reloadData];
     
+    NSString* target = [bundleButton titleOfSelectedItem];
+    NSString* buildConf = @"Debug"; // TODO -- make UI for this
+    NSString* setting = @"OTHER_TEST_FLAGS";
+    NSString* values = [self generateCommandLine];
+
+    [xcodeController updateBuildSetting:target
+                              buildConf:buildConf
+                            settingName:setting
+                                  value:values];
+
     NSInvocationOperation* op = [[NSInvocationOperation alloc] initWithTarget:self
                                                                      selector:@selector(runTestsThread)
                                                                        object:nil];

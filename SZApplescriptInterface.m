@@ -38,45 +38,49 @@
           ofScript:(NSAppleScript*)theScript
           withArgs:(NSArray*)theArgs
 {
-    NSAppleEventDescriptor* parameters = [NSAppleEventDescriptor listDescriptor];
-    for(NSUInteger paramIdx = 0; paramIdx < [theArgs count]; ++paramIdx)
+    @synchronized(self)
     {
-        // List indices are 1-based
-        [parameters insertDescriptor:[theArgs objectAtIndex:paramIdx] atIndex:(paramIdx + 1)];
+        NSAppleEventDescriptor* parameters = [NSAppleEventDescriptor listDescriptor];
+        for(NSUInteger paramIdx = 0; paramIdx < [theArgs count]; ++paramIdx)
+        {
+            // List indices are 1-based
+            [parameters insertDescriptor:[theArgs objectAtIndex:paramIdx] atIndex:(paramIdx + 1)];
+        }
+        
+        // create the AppleEvent target
+        ProcessSerialNumber psn = {0, kCurrentProcess};
+        NSAppleEventDescriptor* target = [NSAppleEventDescriptor descriptorWithDescriptorType:typeProcessSerialNumber
+                                                                                        bytes:&psn
+                                                                                       length:sizeof(ProcessSerialNumber)];
+        
+        NSAppleEventDescriptor* handler = [NSAppleEventDescriptor descriptorWithString:[theRoutine lowercaseString]];
+        
+        // create the event for an AppleScript subroutine,
+        // set the method name and the list of parameters
+        NSAppleEventDescriptor* event = [NSAppleEventDescriptor appleEventWithEventClass:kASAppleScriptSuite
+                                                                                 eventID:kASSubroutineEvent
+                                                                        targetDescriptor:target
+                                                                                returnID:kAutoGenerateReturnID
+                                                                           transactionID:kAnyTransactionID];
+        [event setParamDescriptor:handler
+                       forKeyword:keyASSubroutineName];
+        [event setParamDescriptor:parameters
+                       forKeyword:keyDirectObject];
+        
+        // call the event in AppleScript
+        NSDictionary* errors = [NSDictionary dictionary];
+        NSAppleEventDescriptor* result = [theScript executeAppleEvent:event error:&errors];
+        if(result == nil)
+        {
+            NSLog(@"EXECUTE ERROR: %@", errors);
+            return nil;
+        }
+        else
+        {
+            return [self descriptorToObject:result];
+        }        
     }
-    
-    // create the AppleEvent target
-    ProcessSerialNumber psn = {0, kCurrentProcess};
-    NSAppleEventDescriptor* target = [NSAppleEventDescriptor descriptorWithDescriptorType:typeProcessSerialNumber
-                                                                                    bytes:&psn
-                                                                                   length:sizeof(ProcessSerialNumber)];
-    
-    NSAppleEventDescriptor* handler = [NSAppleEventDescriptor descriptorWithString:[theRoutine lowercaseString]];
-    
-    // create the event for an AppleScript subroutine,
-    // set the method name and the list of parameters
-    NSAppleEventDescriptor* event = [NSAppleEventDescriptor appleEventWithEventClass:kASAppleScriptSuite
-                                                                             eventID:kASSubroutineEvent
-                                                                    targetDescriptor:target
-                                                                            returnID:kAutoGenerateReturnID
-                                                                       transactionID:kAnyTransactionID];
-    [event setParamDescriptor:handler
-                   forKeyword:keyASSubroutineName];
-    [event setParamDescriptor:parameters
-                   forKeyword:keyDirectObject];
-    
-    // call the event in AppleScript
-    NSDictionary* errors = [NSDictionary dictionary];
-    NSAppleEventDescriptor* result = [theScript executeAppleEvent:event error:&errors];
-    if(result == nil)
-    {
-        NSLog(@"EXECUTE ERROR: %@", errors);
-        return nil;
-    }
-    else
-    {
-        return [self descriptorToObject:result];
-    }
+    return nil;
 }
 @end
 

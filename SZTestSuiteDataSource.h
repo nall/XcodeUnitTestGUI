@@ -22,6 +22,7 @@
     
     IBOutlet NSOutlineView* outlineView;
 }
+-(NSInteger)suiteState:(const NSUInteger)theIndex;
 -(void)invalidateStates;
 @property (retain) NSArray* suites;
 @property (retain) NSArray* tests;

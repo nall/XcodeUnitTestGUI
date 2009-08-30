@@ -19,4 +19,9 @@
 -(void)setTarget:(NSString*)theName;
 -(NSString*)runUnitTestBundle:(NSString*)theBundleName;
 -(NSString*)pathToBundle:(NSString*)theName;
+-(void)updateBuildSetting:(NSString*)theTargetName
+                buildConf:(NSString*)theBuildConf
+              settingName:(NSString*)theSettingName
+                    value:(NSString*)theValue;
+
 @end

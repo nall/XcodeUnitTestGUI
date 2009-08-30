@@ -90,4 +90,18 @@
     return result;
 }
 
+-(void)updateBuildSetting:(NSString*)theTargetName
+                buildConf:(NSString*)theBuildConf
+              settingName:(NSString*)theSettingName
+                    value:(NSString*)theValue
+{
+    NSAppleEventDescriptor* targetName = [NSAppleEventDescriptor descriptorWithString:theTargetName];
+    NSAppleEventDescriptor* buildConf = [NSAppleEventDescriptor descriptorWithString:theBuildConf];
+    NSAppleEventDescriptor* settingName = [NSAppleEventDescriptor descriptorWithString:theSettingName];
+    NSAppleEventDescriptor* settingValue = [NSAppleEventDescriptor descriptorWithString:theValue];
+    [scriptInterface runSubroutine:@"modifyBuildSetting"
+                          ofScript:script
+                          withArgs:[NSArray arrayWithObjects:targetName, buildConf, settingName, settingValue, nil]];
+
+}
 @end

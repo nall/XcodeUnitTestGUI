@@ -17,11 +17,13 @@
     NSArray* bundles;
     NSBundle* curBundle;
     NSOperationQueue* queue;
+    BOOL isBuilding;
     
     IBOutlet SZTestSuiteDataSource* dataSource;
     IBOutlet NSOutlineView* outlineView;
     IBOutlet NSPopUpButton* bundleButton;
 }
+@property (assign) BOOL isBuilding;
 -(IBAction)bundleChanged:(id)sender;
 -(IBAction)runTests:(id)sender;
 @end
