@@ -8,12 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface SZTestSuiteDataSource : NSObject
 {
     NSArray* suites;
     NSArray* tests;
 }
+-(void)invalidateStates;
 @property (retain) NSArray* suites;
 @property (retain) NSArray* tests;
 

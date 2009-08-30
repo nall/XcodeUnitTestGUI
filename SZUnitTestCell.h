@@ -7,13 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-enum TestState
-{
-    testPassed,
-    testFailed,
-    testUnknown
-};
+#import "SZTestDescriptor.h"
 
 @interface SZUnitTestCell : NSBrowserCell
 {

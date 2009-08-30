@@ -16,6 +16,7 @@
     NSString* curProject;
     NSArray* bundles;
     NSBundle* curBundle;
+    NSOperationQueue* queue;
     
     IBOutlet SZTestSuiteDataSource* dataSource;
     IBOutlet NSOutlineView* outlineView;

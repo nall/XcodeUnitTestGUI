@@ -34,6 +34,7 @@
 		A497A2CE104ACD67004805E1 /* testStatePassed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2CC104ACD67004805E1 /* testStatePassed.tiff */; };
 		A497A2DA104ACED0004805E1 /* testStateUnknown.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */; };
 		A497A311104AD36F004805E1 /* SZUnitTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A497A310104AD36F004805E1 /* SZUnitTestCell.m */; };
+		A497A373104AE821004805E1 /* SZTestDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = A497A372104AE821004805E1 /* SZTestDescriptor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = testStateUnknown.tiff; sourceTree = "<group>"; };
 		A497A30F104AD36F004805E1 /* SZUnitTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZUnitTestCell.h; sourceTree = "<group>"; };
 		A497A310104AD36F004805E1 /* SZUnitTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZUnitTestCell.m; sourceTree = "<group>"; };
+		A497A371104AE821004805E1 /* SZTestDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTestDescriptor.h; sourceTree = "<group>"; };
+		A497A372104AE821004805E1 /* SZTestDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestDescriptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 				A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */,
 				A497A30F104AD36F004805E1 /* SZUnitTestCell.h */,
 				A497A310104AD36F004805E1 /* SZUnitTestCell.m */,
+				A497A371104AE821004805E1 /* SZTestDescriptor.h */,
+				A497A372104AE821004805E1 /* SZTestDescriptor.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */,
 				A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */,
 				A497A311104AD36F004805E1 /* SZUnitTestCell.m in Sources */,
+				A497A373104AE821004805E1 /* SZTestDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

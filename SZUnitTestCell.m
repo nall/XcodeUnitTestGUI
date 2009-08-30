@@ -16,7 +16,7 @@
     self = [super init];
     if(self != nil)
     {
-        state = testUnknown;
+        state = TestUnknown;
         
         // Load image resources
         passedImage = [[NSImage imageNamed:@"testStatePassed"] retain];
@@ -60,17 +60,17 @@
     state = theState;
     switch(state)
     {
-        case testPassed:
+        case TestPassed:
         {
             curImage = passedImage;
             break;
         }
-        case testFailed:
+        case TestFailed:
         {
             curImage = failedImage;
             break;
         }
-        case testUnknown:
+        case TestUnknown:
         {
             curImage = unknownImage;
             break;

@@ -26,7 +26,7 @@
     {
         for(NSUInteger i = 0; i < [suites count]; ++i)
         {
-            if([[suites objectAtIndex:i] isEqualToString:item])
+            if([[[suites objectAtIndex:i] name] isEqualToString:[item name]])
             {
                 return [[tests objectAtIndex:i] objectAtIndex:index];
             }
@@ -40,7 +40,7 @@
 {
     for(NSUInteger i = 0; i < [suites count]; ++i)
     {
-        if([[suites objectAtIndex:i] isEqualToString:item])
+        if([[[suites objectAtIndex:i] name] isEqualToString:[item name]])
         {            
             return YES;            
         }
@@ -60,7 +60,7 @@
     {
         for(NSUInteger i = 0; i < [suites count]; ++i)
         {
-            if([[suites objectAtIndex:i] isEqualToString:item])
+            if([[[suites objectAtIndex:i] name] isEqualToString:[item name]])
             {
                 return [[tests objectAtIndex:i] count];
             }
@@ -75,14 +75,8 @@
                item:(id)item
 {
     SZUnitTestCell* c = cell;
-    if([item hasPrefix:@"test"])
-    {
-        [c setState:testPassed];
-    }
-    else
-    {
-        [c setState:testFailed];
-    }
+    SZTestDescriptor* test = item;
+    [c setState:test.state];
 }
 
 
@@ -109,6 +103,20 @@ shouldEditTableColumn:(NSTableColumn *)tableColumn
     return NO;
 }
 
+-(void)invalidateStates
+{
+    for(SZTestDescriptor* t in suites)
+    {
+        t.state = TestUnknown;
+    }
+    for(NSArray* a in tests)
+    {
+        for(SZTestDescriptor* t in a)
+        {
+            t.state = TestUnknown;
+        }
+    }
+}
 
 
 @end
