@@ -15,10 +15,12 @@
     SZXCodeController* xcodeController;
     NSString* curProject;
     NSArray* bundles;
+    NSBundle* curBundle;
     
     IBOutlet SZTestSuiteDataSource* dataSource;
     IBOutlet NSOutlineView* outlineView;
+    IBOutlet NSPopUpButton* bundleButton;
 }
 
--(IBAction)showFiles:(id)sender;
+-(IBAction)runTests:(id)sender;
 @end

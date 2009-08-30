@@ -35,6 +35,21 @@
     [bundles release];
 }
 
+-(void)setCurBundle:(NSBundle*)theBundle
+{
+    [self willChangeValueForKey:@"curBundle"];
+    [curBundle unload];
+    [theBundle retain];
+    [curBundle release];
+    curBundle = theBundle;
+    [self didChangeValueForKey:@"curBundle"];
+}
+
+-(NSBundle*)curBundle
+{
+    return curBundle;
+}
+
 -(void)setBundles:(NSArray*)theBundles
 {
     [self willChangeValueForKey:@"bundles"];
@@ -66,8 +81,8 @@
 -(void)loadBundle:(NSString*)theBundleName
 {
     NSString* basePath = [xcodeController pathToBundle:theBundleName];
-    NSBundle* unitTestBundle = [NSBundle bundleWithPath:basePath];
-    if(unitTestBundle == nil)
+    [self setCurBundle:[NSBundle bundleWithPath:basePath]];
+    if(curBundle == nil)
     {
         NSLog(@"ERROR Loading Bundle");
         return;
@@ -77,10 +92,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(bundleDidLoad:)
                                                      name:NSBundleDidLoadNotification
-                                                   object:unitTestBundle];
+                                                   object:curBundle];
 
         // Force loading of classes
-        [unitTestBundle principalClass];
+        [curBundle principalClass];
     }    
 }
 
@@ -96,7 +111,14 @@
         [self setBundles:[xcodeController unitTestBundles]];
         if([bundles count] > 0)
         {
-            [self loadBundle:[bundles objectAtIndex:0]];            
+            NSLog(@"bundle: %@", [bundleButton titleOfSelectedItem]);
+            [self loadBundle:[bundleButton titleOfSelectedItem]];            
+        }
+        else
+        {
+            dataSource.classes = [NSArray array];
+            dataSource.methods = [NSArray array];
+            [outlineView reloadData];
         }
     }
 }
@@ -133,32 +155,10 @@
 }
 
 
--(IBAction)showFiles:(id)sender
+-(IBAction)runTests:(id)sender
 {
-    if([bundles count] > 0)
-    {
-        NSString* bundleName = [bundles objectAtIndex:0];
-        NSString* basePath = [xcodeController pathToBundle:bundleName];
-        NSString* executable = [[[basePath stringByAppendingPathComponent:@"Contents"]
-                                stringByAppendingPathComponent:@"MacOS"]
-                                stringByAppendingPathComponent:bundleName];
-        NSLog(@"%@ -> %@", bundleName, executable);
-        
-        NSBundle* unitTestBundle = [[NSBundle alloc] initWithPath:basePath];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(bundleDidLoad:)
-                                                     name:NSBundleDidLoadNotification
-                                                   object:unitTestBundle];
-        
-        if(unitTestBundle == nil)
-        {
-            NSLog(@"ERROR Loading Bundle");
-            return;
-        }
-        
-        NSLog(@"bundle info: %@", [unitTestBundle infoDictionary]);
-        NSLog(@"principal class: %@", [unitTestBundle principalClass]);
-    }
+    NSString* transcript = [xcodeController runUnitTestBundle:[bundleButton titleOfSelectedItem]];
+    NSLog(@"TRANSCRIPT: %@", transcript);
 }
 
 @end
