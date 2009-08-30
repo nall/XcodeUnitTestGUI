@@ -15,6 +15,7 @@
 		A4704C99104A61B5005B6A5D /* XcodeUnitTestSelector.scpt in Resources */ = {isa = PBXBuildFile; fileRef = A4704C85104A56D3005B6A5D /* XcodeUnitTestSelector.scpt */; };
 		A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D39104A7B55005B6A5D /* SZXCodeController.m */; };
 		A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */; };
+		A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		A4704D39104A7B55005B6A5D /* SZXCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZXCodeController.m; sourceTree = "<group>"; };
 		A4704D3B104A7C20005B6A5D /* SZApplescriptInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZApplescriptInterface.h; sourceTree = "<group>"; };
 		A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZApplescriptInterface.m; sourceTree = "<group>"; };
+		A4704DFE104AA850005B6A5D /* SZTestSuiteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTestSuiteDataSource.h; sourceTree = "<group>"; };
+		A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestSuiteDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 				A4704D39104A7B55005B6A5D /* SZXCodeController.m */,
 				A4704D3B104A7C20005B6A5D /* SZApplescriptInterface.h */,
 				A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */,
+				A4704DFE104AA850005B6A5D /* SZTestSuiteDataSource.h */,
+				A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				A4704C78104A4F56005B6A5D /* SZAppDelegate.m in Sources */,
 				A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */,
 				A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */,
+				A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

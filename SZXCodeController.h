@@ -14,6 +14,7 @@
     SZApplescriptInterface* scriptInterface;
     NSAppleScript* script;
 }
+-(NSString*)currentProject;
 -(NSArray*)unitTestBundles;
 -(void)setTarget:(NSString*)theName;
 -(NSString*)runUnitTestBundle:(NSString*)theBundleName;

@@ -37,6 +37,14 @@
     [super dealloc];
 }
 
+-(NSString*)currentProject
+{
+    NSString* result = [scriptInterface runSubroutine:@"getActiveProjectName"
+                                             ofScript:script
+                                             withArgs:[NSArray array]];
+    return result;    
+}
+
 -(NSArray*)unitTestBundles
 {
     NSArray* result = [scriptInterface runSubroutine:@"getUnitTestBundles"
