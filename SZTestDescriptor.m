@@ -12,7 +12,9 @@
 @implementation SZTestDescriptor
 @synthesize type;
 @synthesize state;
+@synthesize enabled;
 @synthesize name;
+@synthesize index;
 
 -(id)initSuite:(NSString*)theName
 {
@@ -22,6 +24,8 @@
         self.name = theName;
         self.state = TestUnknown;
         self.type = TestsuiteType;
+        self.enabled = YES;
+        self.index = ~0;
     }
     return self;
 }
@@ -34,7 +38,9 @@
         self.name = theName;
         parentName = [theSuiteName retain];
         self.state = TestUnknown;
-        self.type = TestsuiteType;
+        self.type = TestcaseType;
+        self.enabled = YES;
+        self.index = ~0;
     }
     return self;    
 }
@@ -65,6 +71,7 @@
     }
 
     test.state = self.state;
+    test.enabled = self.enabled;
     return test;
 }
 

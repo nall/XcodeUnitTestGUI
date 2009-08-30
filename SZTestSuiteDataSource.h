@@ -10,8 +10,17 @@
 
 @interface SZTestSuiteDataSource : NSObject
 {
+    @private
     NSArray* suites;
     NSArray* tests;
+    NSBrowserCell* testCell;
+    NSButtonCell* enableCell;
+
+    NSImage* passedImage;
+    NSImage* failedImage;
+    NSImage* unknownImage;  
+    
+    IBOutlet NSOutlineView* outlineView;
 }
 -(void)invalidateStates;
 @property (retain) NSArray* suites;

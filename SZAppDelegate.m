@@ -277,6 +277,7 @@ static NSString* const kszSenTestAllTests = @"All tests";
         }
         
         [suites addObject:[[[SZTestDescriptor alloc] initSuite:className] autorelease]];
+        [[suites lastObject] setIndex:[suites count] - 1];
         
         unsigned int numMethods;
         Method* methodList = class_copyMethodList(klass, &numMethods);
@@ -289,8 +290,11 @@ static NSString* const kszSenTestAllTests = @"All tests";
             NSString* methName = [NSString stringWithCString:methNameC];
             if([methName hasPrefix:@"test"])
             {
-                [[tests lastObject] addObject:
-                 [[[SZTestDescriptor alloc] initTest:methName inSuite:className] autorelease]];
+                NSMutableArray* testArray = [tests lastObject];
+                [testArray addObject:[[[SZTestDescriptor alloc] initTest:methName
+                                                                 inSuite:className]
+                                      autorelease]];
+                [[testArray lastObject] setIndex:[testArray count] - 1];
             }
         }
     }
