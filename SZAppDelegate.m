@@ -157,7 +157,6 @@
         [self setBundles:[xcodeController unitTestBundles]];
         if([bundles count] > 0)
         {
-            NSLog(@"bundle: %@", [bundleButton titleOfSelectedItem]);
             [self loadBundle:[bundleButton titleOfSelectedItem]];            
         }
         else
@@ -203,6 +202,13 @@
     [outlineView reloadData];
 }
 
+-(IBAction)bundleChanged:(id)sender
+{
+    if([bundles count] > 0)
+    {
+        [self loadBundle:[bundleButton titleOfSelectedItem]];
+    }
+}
 
 -(IBAction)runTests:(id)sender
 {

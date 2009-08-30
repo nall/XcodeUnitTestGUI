@@ -21,6 +21,6 @@
     IBOutlet NSOutlineView* outlineView;
     IBOutlet NSPopUpButton* bundleButton;
 }
-
+-(IBAction)bundleChanged:(id)sender;
 -(IBAction)runTests:(id)sender;
 @end
