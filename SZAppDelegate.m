@@ -162,8 +162,8 @@
         }
         else
         {
-            dataSource.classes = [NSArray array];
-            dataSource.methods = [NSArray array];
+            dataSource.suites = [NSArray array];
+            dataSource.tests = [NSArray array];
             [outlineView reloadData];
         }
     }
@@ -177,11 +177,12 @@
     for(NSString* className in classes)
     {
         Class klass = NSClassFromString(className);
+        
         unsigned int numMethods;
         Method* methodList = class_copyMethodList(klass, &numMethods);
     
         [methods addObject:[NSMutableArray arrayWithCapacity:numMethods]];
-        
+        // TODO: check that it's a subclass of SenTestCase
         NSLog(@"CLASS: %@", className);
         for(uint32_t i = 0; i < numMethods; ++i)
         {
@@ -197,8 +198,8 @@
         }
     }
     
-    dataSource.classes = classes;
-    dataSource.methods = methods;
+    dataSource.suites = classes;
+    dataSource.tests = methods;
     [outlineView reloadData];
 }
 

@@ -11,10 +11,10 @@
 
 @interface SZTestSuiteDataSource : NSObject
 {
-    NSArray* classes;
-    NSArray* methods;
+    NSArray* suites;
+    NSArray* tests;
 }
-@property (retain) NSArray* classes;
-@property (retain) NSArray* methods;
+@property (retain) NSArray* suites;
+@property (retain) NSArray* tests;
 
 @end

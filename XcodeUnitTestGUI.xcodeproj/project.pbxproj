@@ -30,6 +30,10 @@
 		A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */; };
 		A497A249104AB31B004805E1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A497A248104AB31B004805E1 /* SenTestingKit.framework */; };
 		A497A2AF104AC9B5004805E1 /* XcodeUnitTestGUI.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		A497A2CD104ACD67004805E1 /* testStateFailed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2CB104ACD67004805E1 /* testStateFailed.tiff */; };
+		A497A2CE104ACD67004805E1 /* testStatePassed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2CC104ACD67004805E1 /* testStatePassed.tiff */; };
+		A497A2DA104ACED0004805E1 /* testStateUnknown.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */; };
+		A497A311104AD36F004805E1 /* SZUnitTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A497A310104AD36F004805E1 /* SZUnitTestCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,11 @@
 		A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestSuiteDataSource.m; sourceTree = "<group>"; };
 		A497A248104AB31B004805E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = XcodeUnitTestGUI.applescript; sourceTree = "<group>"; };
+		A497A2CB104ACD67004805E1 /* testStateFailed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = testStateFailed.tiff; sourceTree = "<group>"; };
+		A497A2CC104ACD67004805E1 /* testStatePassed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = testStatePassed.tiff; sourceTree = "<group>"; };
+		A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = testStateUnknown.tiff; sourceTree = "<group>"; };
+		A497A30F104AD36F004805E1 /* SZUnitTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZUnitTestCell.h; sourceTree = "<group>"; };
+		A497A310104AD36F004805E1 /* SZUnitTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZUnitTestCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +88,8 @@
 				A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */,
 				A4704DFE104AA850005B6A5D /* SZTestSuiteDataSource.h */,
 				A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */,
+				A497A30F104AD36F004805E1 /* SZUnitTestCell.h */,
+				A497A310104AD36F004805E1 /* SZUnitTestCell.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -134,6 +145,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */,
+				A497A2CB104ACD67004805E1 /* testStateFailed.tiff */,
+				A497A2CC104ACD67004805E1 /* testStatePassed.tiff */,
 				A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -197,6 +211,9 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				A497A2CD104ACD67004805E1 /* testStateFailed.tiff in Resources */,
+				A497A2CE104ACD67004805E1 /* testStatePassed.tiff in Resources */,
+				A497A2DA104ACED0004805E1 /* testStateUnknown.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +229,7 @@
 				A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */,
 				A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */,
 				A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */,
+				A497A311104AD36F004805E1 /* SZUnitTestCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
