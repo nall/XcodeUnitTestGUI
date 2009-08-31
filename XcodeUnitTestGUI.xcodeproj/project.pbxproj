@@ -44,7 +44,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* XcodeUnitTestGUI_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XcodeUnitTestGUI_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* XcodeUnitTestGUI_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XcodeUnitTestGUI_Prefix.pch; path = ../XcodeUnitTestGUI_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* XcodeUnitTestGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeUnitTestGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4704C76104A4F56005B6A5D /* SZAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZAppDelegate.h; sourceTree = "<group>"; };
@@ -57,9 +57,9 @@
 		A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestSuiteDataSource.m; sourceTree = "<group>"; };
 		A497A248104AB31B004805E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = XcodeUnitTestGUI.applescript; sourceTree = "<group>"; };
-		A497A2CB104ACD67004805E1 /* testStateFailed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = testStateFailed.tiff; sourceTree = "<group>"; };
-		A497A2CC104ACD67004805E1 /* testStatePassed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = testStatePassed.tiff; sourceTree = "<group>"; };
-		A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = testStateUnknown.tiff; sourceTree = "<group>"; };
+		A497A2CB104ACD67004805E1 /* testStateFailed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = testStateFailed.tiff; path = resources/testStateFailed.tiff; sourceTree = "<group>"; };
+		A497A2CC104ACD67004805E1 /* testStatePassed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = testStatePassed.tiff; path = resources/testStatePassed.tiff; sourceTree = "<group>"; };
+		A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = testStateUnknown.tiff; path = resources/testStateUnknown.tiff; sourceTree = "<group>"; };
 		A497A371104AE821004805E1 /* SZTestDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTestDescriptor.h; sourceTree = "<group>"; };
 		A497A372104AE821004805E1 /* SZTestDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestDescriptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +92,7 @@
 				A497A372104AE821004805E1 /* SZTestDescriptor.m */,
 			);
 			name = Classes;
+			path = src;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -136,10 +137,12 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */,
 				32CA4F630368D1EE00C91783 /* XcodeUnitTestGUI_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
+			path = src;
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -148,7 +151,6 @@
 				A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */,
 				A497A2CB104ACD67004805E1 /* testStateFailed.tiff */,
 				A497A2CC104ACD67004805E1 /* testStatePassed.tiff */,
-				A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
