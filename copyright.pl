@@ -1,5 +1,20 @@
+#!/usr/bin/perl -w
+
+use File::Basename;
+
+use strict;
+
+my $inpath = $ARGV[0];
+my $outpath = "tmptmpblah";
+
+my($filename, $directories, $suffix) = fileparse($inpath);
+
+open(FILE, "<$inpath") or die("Cannot open $inpath for reading");
+open(OUT, ">$outpath") or die("Cannot open tmp file for writing");
+
+print OUT <<EOH;
 //
-// SZXCodeController.h
+// $filename
 //
 // Xcode Unit Test GUI
 // Copyright (c) 2009 Jon Nall, STUNTAZ!!!
@@ -25,23 +40,25 @@
 // WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
+EOH
 
-#import <Cocoa/Cocoa.h>
-#import "SZApplescriptInterface.h"
-
-@interface SZXCodeController : NSObject
+my $sawNonComment = 0;
+while(<FILE>)
 {
-    SZApplescriptInterface* scriptInterface;
-    NSAppleScript* script;
-}
--(NSString*)currentProject;
--(NSArray*)unitTestBundles;
--(void)setTarget:(NSString*)theName;
--(NSString*)runUnitTestBundle:(NSString*)theBundleName;
--(NSString*)pathToBundle:(NSString*)theName;
--(void)updateBuildSetting:(NSString*)theTargetName
-                buildConf:(NSString*)theBuildConf
-              settingName:(NSString*)theSettingName
-                    value:(NSString*)theValue;
+    my $line = $_;
 
-@end
+    if($line !~ /^\/\//)
+    {
+        $sawNonComment = 1;
+    }
+
+    if($sawNonComment == 1)
+    {
+        print OUT $line;
+    }
+}
+close(FILE);
+close(OUT);
+
+system("/bin/mv $outpath $inpath");
+
