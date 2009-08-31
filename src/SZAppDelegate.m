@@ -331,7 +331,7 @@ static NSString* const kszSenTestAllTests = @"All tests";
         for(unsigned int i = 0; i < numMethods; ++i)
         {
             const char* methNameC = sel_getName(method_getName(methodList[i]));
-            NSString* methName = [NSString stringWithCString:methNameC];
+            NSString* methName = [NSString stringWithCString:methNameC encoding:NSASCIIStringEncoding];
             if([methName hasPrefix:@"test"])
             {
                 self.testsValid = YES;
