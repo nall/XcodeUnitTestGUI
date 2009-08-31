@@ -9,7 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="29"/>
-			<integer value="371"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -2040,23 +2040,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isBuilding</string>
+						<string key="label">enabled: runEnabled</string>
 						<reference key="source" ref="277005958"/>
 						<reference key="destination" ref="637706487"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="277005958"/>
 							<reference key="NSDestination" ref="637706487"/>
-							<string key="NSLabel">enabled: isBuilding</string>
+							<string key="NSLabel">enabled: runEnabled</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isBuilding</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
+							<string key="NSKeyPath">runEnabled</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">503</int>
+					<int key="connectionID">505</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3612,7 +3608,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">503</int>
+			<int key="maxID">505</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3650,7 +3646,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">SZAppDelegate.h</string>
+						<string key="minorKey">src/SZAppDelegate.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -3662,7 +3658,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">SZTestSuiteDataSource.h</string>
+						<string key="minorKey">src/SZTestSuiteDataSource.h</string>
 					</object>
 				</object>
 			</object>

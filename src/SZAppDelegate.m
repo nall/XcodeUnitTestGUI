@@ -36,12 +36,14 @@ static NSString* const kszSenTestAllTests = @"All tests";
 
 @implementation SZAppDelegate
 @synthesize isBuilding;
+@synthesize testsValid;
 
 -(void)applicationDidFinishLaunching:(NSNotification*)theNotification
 {
     xcodeController = [[SZXCodeController alloc] init];
     queue = [[NSOperationQueue alloc] init];
-    isBuilding = NO;
+    self.isBuilding = NO;
+    self.testsValid = NO;
     
     NSRunLoop* runLoop = [NSRunLoop currentRunLoop];
     NSDate* nextTime = [NSDate dateWithTimeIntervalSinceNow:1.0];
@@ -136,6 +138,26 @@ static NSString* const kszSenTestAllTests = @"All tests";
     [outlineView reloadData];
 }
 
++(NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key
+{
+    NSMutableSet* set = [NSMutableSet set];
+    if([key isEqualToString:@"runEnabled"])
+    {
+        [set addObject:@"isBuilding"];
+        [set addObject:@"testsValid"];
+    }
+    
+    [set unionSet:[super keyPathsForValuesAffectingValueForKey:key]];
+    
+    return set;
+}
+
+-(BOOL)runEnabled
+{
+    return isBuilding == NO && testsValid == YES;
+}
+
+
 -(void)testFailed:(NSNotification*)theNotification
 {
 //    NSLog(@"test failed: %@", theNotification);
@@ -165,6 +187,7 @@ static NSString* const kszSenTestAllTests = @"All tests";
 {
     [self willChangeValueForKey:@"curBundle"];
     [curBundle unload];
+    self.testsValid = NO;
     [theBundle retain];
     [curBundle release];
     curBundle = theBundle;
@@ -311,6 +334,7 @@ static NSString* const kszSenTestAllTests = @"All tests";
             NSString* methName = [NSString stringWithCString:methNameC];
             if([methName hasPrefix:@"test"])
             {
+                self.testsValid = YES;
                 NSMutableArray* testArray = [tests lastObject];
                 [testArray addObject:[[[SZTestDescriptor alloc] initTest:methName
                                                                  inSuite:className]

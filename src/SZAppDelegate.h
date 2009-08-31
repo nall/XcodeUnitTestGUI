@@ -38,12 +38,15 @@
     NSBundle* curBundle;
     NSOperationQueue* queue;
     BOOL isBuilding;
+    BOOL testsValid;
     
     IBOutlet SZTestSuiteDataSource* dataSource;
     IBOutlet NSOutlineView* outlineView;
     IBOutlet NSPopUpButton* bundleButton;
 }
 @property (assign) BOOL isBuilding;
+@property (assign) BOOL testsValid;
+@property (readonly) BOOL runEnabled;
 -(IBAction)bundleChanged:(id)sender;
 -(IBAction)runTests:(id)sender;
 @end
