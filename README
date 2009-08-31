@@ -1,8 +1,10 @@
-== Introduction ==
+Introduction
+============
 
 This is a Cocoa application to help make running unit tests in Xcode a bit easier. It provides a means of selecting which unit tests will run as well as a visual pass/fail indication. I plan to add some features like "rerun only failing tests", etc. 
 
-== Description ==
+Description
+===========
 
 To enable SenTest distributed notifications, you should add SZSentTestNotifier.m into your unit test target. This provides some communication back and forth to the Cocoa app. 
 
