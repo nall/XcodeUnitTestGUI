@@ -162,6 +162,8 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
         }        
     }
     [outlineView reloadData];
+    
+    ++testTotalCount;
 }
 
 -(void)testFailed:(NSNotification*)theNotification
@@ -194,8 +196,8 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
         NSString* result;
         if(testFailureCount > 0)
         {
-            result = [NSString stringWithFormat:@"%d of %d tests failed", testFailureCount,
-                      [outlineView numberOfRows] - [dataSource.suites count]];
+            result = [NSString stringWithFormat:@"%d of %d tests failed",
+                      testFailureCount, testTotalCount];
         }
         else
         {
@@ -209,6 +211,14 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
         {
             // Enable re-run failures if needed
             self.runTypes = [NSArray arrayWithObjects:kszAllTests, kszSelectedTests, kszFailingTests, nil];
+        }
+    }
+    else
+    {
+        ++suiteTotalCount;
+        if(hadFailures)
+        {
+            ++suiteFailureCount;
         }
     }
 }
@@ -288,6 +298,8 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
         NSString* project = [xcodeController currentProject];
         if([project isEqualToString:curProject] == NO)
         {
+            [resultLabel setStringValue:@""];
+            self.testsValid = NO;
             [self setCurProject:project];
             [self setBundles:[xcodeController unitTestBundles]];
             if([bundles count] > 0)
@@ -309,6 +321,9 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
  
     testFailureCount = 0;
+    testTotalCount = 0;
+    suiteFailureCount = 0;
+    suiteTotalCount = 0;
     [resultLabel setStringValue:@"Running tests..."];
     NSString* transcript = [xcodeController runUnitTestBundle:[bundleButton titleOfSelectedItem]];
     (void)transcript;

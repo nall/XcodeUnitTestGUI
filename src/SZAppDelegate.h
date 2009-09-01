@@ -42,6 +42,9 @@
     BOOL testsValid;
     
     NSUInteger testFailureCount;
+    NSUInteger testTotalCount;
+    NSUInteger suiteFailureCount;
+    NSUInteger suiteTotalCount;
     
     IBOutlet SZTestSuiteDataSource* dataSource;
     IBOutlet NSOutlineView* outlineView;

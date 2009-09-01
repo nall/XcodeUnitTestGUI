@@ -26,6 +26,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A43E3BBD104DAA6C00D7E987 /* SZSenTestNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E3BBC104DAA6C00D7E987 /* SZSenTestNotifier.m */; };
 		A43E3C3B104DB3F900D7E987 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */; };
+		A43E3C8C104DB6C800D7E987 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */; };
 		A4704C78104A4F56005B6A5D /* SZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704C77104A4F56005B6A5D /* SZAppDelegate.m */; };
 		A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D39104A7B55005B6A5D /* SZXCodeController.m */; };
 		A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */; };
@@ -74,6 +75,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				A43E3C8C104DB6C800D7E987 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
