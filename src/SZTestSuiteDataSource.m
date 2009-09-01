@@ -29,6 +29,10 @@
 #import "SZTestSuiteDataSource.h"
 #import "SZTestDescriptor.h"
 
+NSString* const kszAllTests = @"All Tests";
+NSString* const kszSelectedTests = @"Selected Tests";
+NSString* const kszFailingTests = @"Failing Tests";
+
 @implementation SZTestSuiteDataSource
 @synthesize suites;
 @synthesize tests;
@@ -144,6 +148,22 @@
             theTest.enabled = newState;
         }
     }
+    
+    BOOL allOn = YES;
+    for(SZTestDescriptor* suite in suites)
+    {
+        if(suite.enabled != NSOnState)
+        {
+            [runTypeButton selectItemWithTitle:kszSelectedTests];
+            allOn = NO;
+            break;
+        }
+    }
+    if(allOn)
+    {
+        [runTypeButton selectItemWithTitle:kszAllTests];
+    }
+    
     [outlineView reloadData];    
     
 }

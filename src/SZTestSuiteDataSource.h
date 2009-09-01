@@ -29,6 +29,10 @@
 #import <Cocoa/Cocoa.h>
 #import "SZTestDescriptor.h"
 
+extern NSString* const kszAllTests;
+extern NSString* const kszSelectedTests;
+extern NSString* const kszFailingTests;
+
 @interface SZTestSuiteDataSource : NSObject
 {
     @private
@@ -42,6 +46,7 @@
     NSImage* unknownImage;  
     
     IBOutlet NSOutlineView* outlineView;
+    IBOutlet NSPopUpButton* runTypeButton;
 }
 -(void)invalidateStates;
 -(void)updateSuiteState:(SZTestDescriptor*)theSuite;

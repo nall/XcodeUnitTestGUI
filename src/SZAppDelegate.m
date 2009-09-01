@@ -34,11 +34,6 @@
 
 static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
 
-static NSString* const kszAllTests = @"All Tests";
-static NSString* const kszSelectedTests = @"Selected Tests";
-static NSString* const kszFailingTests = @"Failing Tests";
-
-
 @implementation SZAppDelegate
 @synthesize isBuilding;
 @synthesize testsValid;
