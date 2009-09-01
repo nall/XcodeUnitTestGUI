@@ -24,11 +24,12 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A43E3BBD104DAA6C00D7E987 /* SZSenTestNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E3BBC104DAA6C00D7E987 /* SZSenTestNotifier.m */; };
+		A43E3C3B104DB3F900D7E987 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */; };
 		A4704C78104A4F56005B6A5D /* SZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704C77104A4F56005B6A5D /* SZAppDelegate.m */; };
 		A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D39104A7B55005B6A5D /* SZXCodeController.m */; };
 		A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */; };
 		A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */; };
-		A497A249104AB31B004805E1 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A497A248104AB31B004805E1 /* SenTestingKit.framework */; };
 		A497A2AF104AC9B5004805E1 /* XcodeUnitTestGUI.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		A497A2CD104ACD67004805E1 /* testStateFailed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2CB104ACD67004805E1 /* testStateFailed.tiff */; };
 		A497A2CE104ACD67004805E1 /* testStatePassed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2CC104ACD67004805E1 /* testStatePassed.tiff */; };
@@ -47,6 +48,10 @@
 		32CA4F630368D1EE00C91783 /* XcodeUnitTestGUI_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XcodeUnitTestGUI_Prefix.pch; path = ../XcodeUnitTestGUI_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* XcodeUnitTestGUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XcodeUnitTestGUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A43E3BB6104DAA3700D7E987 /* XcodeUnitTestGUIHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XcodeUnitTestGUIHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A43E3BB7104DAA3700D7E987 /* XcodeUnitTestGUIHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XcodeUnitTestGUIHelper-Info.plist"; sourceTree = "<group>"; };
+		A43E3BBC104DAA6C00D7E987 /* SZSenTestNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZSenTestNotifier.m; sourceTree = "<group>"; };
+		A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		A4704C76104A4F56005B6A5D /* SZAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZAppDelegate.h; sourceTree = "<group>"; };
 		A4704C77104A4F56005B6A5D /* SZAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZAppDelegate.m; sourceTree = "<group>"; };
 		A4704D38104A7B55005B6A5D /* SZXCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZXCodeController.h; sourceTree = "<group>"; };
@@ -55,7 +60,6 @@
 		A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZApplescriptInterface.m; sourceTree = "<group>"; };
 		A4704DFE104AA850005B6A5D /* SZTestSuiteDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTestSuiteDataSource.h; sourceTree = "<group>"; };
 		A4704DFF104AA850005B6A5D /* SZTestSuiteDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestSuiteDataSource.m; sourceTree = "<group>"; };
-		A497A248104AB31B004805E1 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = XcodeUnitTestGUI.applescript; sourceTree = "<group>"; };
 		A497A2CB104ACD67004805E1 /* testStateFailed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = testStateFailed.tiff; path = resources/testStateFailed.tiff; sourceTree = "<group>"; };
 		A497A2CC104ACD67004805E1 /* testStatePassed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = testStatePassed.tiff; path = resources/testStatePassed.tiff; sourceTree = "<group>"; };
@@ -70,7 +74,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				A497A249104AB31B004805E1 /* SenTestingKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A43E3BB4104DAA3700D7E987 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A43E3C3B104DB3F900D7E987 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +109,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -117,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* XcodeUnitTestGUI.app */,
+				A43E3BB6104DAA3700D7E987 /* XcodeUnitTestGUIHelper.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,7 +142,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				A497A248104AB31B004805E1 /* SenTestingKit.framework */,
+				A43E3BB7104DAA3700D7E987 /* XcodeUnitTestGUIHelper-Info.plist */,
 			);
 			name = XcodeUnitTestGUI;
 			sourceTree = "<group>";
@@ -137,6 +150,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A43E3BBC104DAA6C00D7E987 /* SZSenTestNotifier.m */,
 				A497A2AB104AC93B004805E1 /* XcodeUnitTestGUI.applescript */,
 				32CA4F630368D1EE00C91783 /* XcodeUnitTestGUI_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -169,6 +183,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		A43E3BB1104DAA3700D7E987 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		8D1107260486CEB800E47090 /* XcodeUnitTestGUI */ = {
 			isa = PBXNativeTarget;
@@ -189,6 +213,24 @@
 			productReference = 8D1107320486CEB800E47090 /* XcodeUnitTestGUI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A43E3BB5104DAA3700D7E987 /* XcodeUnitTestGUIHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A43E3BBB104DAA3800D7E987 /* Build configuration list for PBXNativeTarget "XcodeUnitTestGUIHelper" */;
+			buildPhases = (
+				A43E3BB1104DAA3700D7E987 /* Headers */,
+				A43E3BB2104DAA3700D7E987 /* Resources */,
+				A43E3BB3104DAA3700D7E987 /* Sources */,
+				A43E3BB4104DAA3700D7E987 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XcodeUnitTestGUIHelper;
+			productName = XcodeUnitTestGUIHelper;
+			productReference = A43E3BB6104DAA3700D7E987 /* XcodeUnitTestGUIHelper.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -202,6 +244,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* XcodeUnitTestGUI */,
+				A43E3BB5104DAA3700D7E987 /* XcodeUnitTestGUIHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -219,6 +262,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A43E3BB2104DAA3700D7E987 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -232,6 +282,14 @@
 				A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */,
 				A4704E00104AA850005B6A5D /* SZTestSuiteDataSource.m in Sources */,
 				A497A373104AE821004805E1 /* SZTestDescriptor.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A43E3BB3104DAA3700D7E987 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A43E3BBD104DAA6C00D7E987 /* SZSenTestNotifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +315,61 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A43E3BB9104DAA3800D7E987 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "XcodeUnitTestGUIHelper-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = XcodeUnitTestGUIHelper;
+			};
+			name = Debug;
+		};
+		A43E3BBA104DAA3800D7E987 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				INFOPLIST_FILE = "XcodeUnitTestGUIHelper-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = XcodeUnitTestGUIHelper;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -319,6 +432,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A43E3BBB104DAA3800D7E987 /* Build configuration list for PBXNativeTarget "XcodeUnitTestGUIHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A43E3BB9104DAA3800D7E987 /* Debug */,
+				A43E3BBA104DAA3800D7E987 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "XcodeUnitTestGUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
