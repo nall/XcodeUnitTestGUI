@@ -27,6 +27,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 
 #import <Cocoa/Cocoa.h>
+#import "SZTestDescriptor.h"
 
 @interface SZTestSuiteDataSource : NSObject
 {
@@ -43,6 +44,7 @@
     IBOutlet NSOutlineView* outlineView;
 }
 -(void)invalidateStates;
+-(void)updateSuiteState:(SZTestDescriptor*)theSuite;
 @property (retain) NSArray* suites;
 @property (retain) NSArray* tests;
 

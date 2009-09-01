@@ -34,19 +34,29 @@
 {
     SZXCodeController* xcodeController;
     NSString* curProject;
+    NSArray* runTypes;
     NSArray* bundles;
     NSBundle* curBundle;
     NSOperationQueue* queue;
     BOOL isBuilding;
     BOOL testsValid;
     
+    NSUInteger testFailureCount;
+    
     IBOutlet SZTestSuiteDataSource* dataSource;
     IBOutlet NSOutlineView* outlineView;
     IBOutlet NSPopUpButton* bundleButton;
+    
+    IBOutlet NSPopUpButton* runTypeButton;
+    IBOutlet NSTextField* resultLabel;
 }
+@property (retain) NSArray* bundles;
+@property (retain) NSArray* runTypes;
+
 @property (assign) BOOL isBuilding;
 @property (assign) BOOL testsValid;
 @property (readonly) BOOL runEnabled;
 -(IBAction)bundleChanged:(id)sender;
 -(IBAction)runTests:(id)sender;
+-(IBAction)filterTests:(id)sender;
 @end

@@ -65,48 +65,51 @@
     [super dealloc];
 }
 
+-(void)updateSuiteState:(SZTestDescriptor*)theSuite
+{
+    // Update suite state
+    NSArray* testArray = [tests objectAtIndex:theSuite.index];
+    
+    NSInteger buttonState = NSOnState;
+    BOOL foundOn = NO;
+    for(SZTestDescriptor* test in testArray)
+    {
+        if(test.enabled == NO)
+        {
+            // If we find anything off, transition to mixed
+            buttonState = NSMixedState;
+        }
+        
+        // Track if we found any that were on
+        foundOn |= test.enabled;
+    }
+    
+    // If we found none on, transition to off
+    if(foundOn == NO)
+    {
+        buttonState = NSOffState;
+    }
+    
+    theSuite.enabled = buttonState;
+}
+
 -(void)enableClicked:(id)sender
 {
     const NSUInteger row = [outlineView clickedRow];
-    SZTestDescriptor* t = [outlineView itemAtRow:row];
-    if(t.type == TestcaseType)
+    SZTestDescriptor* theTest = [outlineView itemAtRow:row];
+
+    if(theTest.type == TestcaseType)
     {
-        assert(t.enabled == NSOnState || t.enabled == NSOffState);
-        t.enabled = (t.enabled == NSOnState) ? NSOffState : NSOnState;
-        
-        // Update suite state
-        {
-            SZTestDescriptor* suite = [outlineView parentForItem:t];
-            NSArray* testArray = [tests objectAtIndex:suite.index];
-            
-            NSInteger buttonState = NSOnState;
-            BOOL foundOn = NO;
-            for(SZTestDescriptor* test in testArray)
-            {
-                if(test.enabled == NO)
-                {
-                    // If we find anything off, transition to mixed
-                    buttonState = NSMixedState;
-                }
-                
-                // Track if we found any that were on
-                foundOn |= test.enabled;
-            }
-            
-            // If we found none on, transition to off
-            if(foundOn == NO)
-            {
-                buttonState = NSOffState;
-            }
-            
-            suite.enabled = buttonState;
-        }
+        assert(theTest.enabled == NSOnState || theTest.enabled == NSOffState);
+        theTest.enabled = (theTest.enabled == NSOnState) ? NSOffState : NSOnState;            
+        SZTestDescriptor* suite = [outlineView parentForItem:theTest];
+        [self updateSuiteState:suite];
     }
     else
     {
         BOOL updateTests = NO;
-        NSInteger newState = t.enabled;
-        switch(t.enabled)
+        NSInteger newState = theTest.enabled;
+        switch(theTest.enabled)
         {
             case NSOffState:
             {
@@ -126,22 +129,23 @@
                 break;
             default:
                 NSBeep();
-                NSLog(@"Unexpected Button State: %d", t.enabled);
+                NSLog(@"Unexpected Button State: %d", theTest.enabled);
         }
         
         if(updateTests)
         {
-            NSArray* testArray = [tests objectAtIndex:t.index];
+            NSArray* testArray = [tests objectAtIndex:theTest.index];
             for(SZTestDescriptor* test in testArray)
             {
                 assert(newState != NSMixedState);
                 test.enabled = newState;
             }
             
-            t.enabled = newState;
+            theTest.enabled = newState;
         }
     }
-    [outlineView reloadData];
+    [outlineView reloadData];    
+    
 }
 
 -(NSImage*)stateToImage:(const enum TestState)theState

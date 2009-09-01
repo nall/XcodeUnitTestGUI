@@ -32,11 +32,18 @@
 #import "SZAppDelegate.h"
 #import "SZTestDescriptor.h"
 
-static NSString* const kszSenTestAllTests = @"All tests";
+static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
+
+static NSString* const kszAllTests = @"All Tests";
+static NSString* const kszSelectedTests = @"Selected Tests";
+static NSString* const kszFailingTests = @"Failing Tests";
+
 
 @implementation SZAppDelegate
 @synthesize isBuilding;
 @synthesize testsValid;
+@synthesize bundles;
+@synthesize runTypes;
 
 -(void)applicationDidFinishLaunching:(NSNotification*)theNotification
 {
@@ -44,6 +51,10 @@ static NSString* const kszSenTestAllTests = @"All tests";
     queue = [[NSOperationQueue alloc] init];
     self.isBuilding = NO;
     self.testsValid = NO;
+    
+    [resultLabel setStringValue:@""];
+    
+    self.runTypes = [NSArray arrayWithObjects:kszAllTests, kszSelectedTests, nil];
     
     NSRunLoop* runLoop = [NSRunLoop currentRunLoop];
     NSDate* nextTime = [NSDate dateWithTimeIntervalSinceNow:1.0];
@@ -84,6 +95,7 @@ static NSString* const kszSenTestAllTests = @"All tests";
     [queue release];
     [curProject release];
     [bundles release];
+    [runTypes release];
 }
 
 -(void)parse:(NSString*)theName
@@ -104,14 +116,33 @@ static NSString* const kszSenTestAllTests = @"All tests";
     *theSuiteName = [theName substringWithRange:suiteRange];
 }
 
++(NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key
+{
+    NSMutableSet* set = [NSMutableSet set];
+    if([key isEqualToString:@"runEnabled"])
+    {
+        [set addObject:@"isBuilding"];
+        [set addObject:@"testsValid"];
+    }
+    
+    [set unionSet:[super keyPathsForValuesAffectingValueForKey:key]];
+    
+    return set;
+}
+
+-(BOOL)runEnabled
+{
+    return isBuilding == NO && testsValid == YES;
+}
+
 -(void)testStarted:(NSNotification*)theNotification
 {
-//    NSLog(@"test started: %@", theNotification);
+    //    NSLog(@"test started: %@", theNotification);
 }
 
 -(void)testStopped:(NSNotification*)theNotification
 {
-//    NSLog(@"test stopped: %@", theNotification);
+    //    NSLog(@"test stopped: %@", theNotification);
     NSString* name = [[theNotification userInfo] objectForKey:@"name"];
     const BOOL hadFailures = [[[theNotification userInfo] objectForKey:@"failureCount"] boolValue];
     
@@ -138,29 +169,10 @@ static NSString* const kszSenTestAllTests = @"All tests";
     [outlineView reloadData];
 }
 
-+(NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key
-{
-    NSMutableSet* set = [NSMutableSet set];
-    if([key isEqualToString:@"runEnabled"])
-    {
-        [set addObject:@"isBuilding"];
-        [set addObject:@"testsValid"];
-    }
-    
-    [set unionSet:[super keyPathsForValuesAffectingValueForKey:key]];
-    
-    return set;
-}
-
--(BOOL)runEnabled
-{
-    return isBuilding == NO && testsValid == YES;
-}
-
-
 -(void)testFailed:(NSNotification*)theNotification
 {
 //    NSLog(@"test failed: %@", theNotification);
+    ++testFailureCount;
 }
 
 -(void)suiteStarted:(NSNotification*)theNotification
@@ -170,7 +182,6 @@ static NSString* const kszSenTestAllTests = @"All tests";
 
 -(void)suiteStopped:(NSNotification*)theNotification
 {
-//    NSLog(@"suite stopped: %@", theNotification);
     NSString* name = [[theNotification userInfo] objectForKey:@"name"];
     const BOOL hadFailures = [[[theNotification userInfo] objectForKey:@"failureCount"] boolValue];
     for(SZTestDescriptor* test in dataSource.suites)
@@ -181,6 +192,30 @@ static NSString* const kszSenTestAllTests = @"All tests";
         }
     }
     [outlineView reloadData];
+    
+    if([name isEqualToString:kszTopLevelTestSuite])
+    {
+        // All tests complete. Print results.
+        NSString* result;
+        if(testFailureCount > 0)
+        {
+            result = [NSString stringWithFormat:@"%d of %d tests failed", testFailureCount,
+                      [outlineView numberOfRows] - [dataSource.suites count]];
+        }
+        else
+        {
+            result = @"All tests passed";
+        }
+        [resultLabel setStringValue:result];
+        
+        // Update runtypes popup
+        self.runTypes = [NSArray arrayWithObjects:kszAllTests, kszSelectedTests, nil];
+        if(testFailureCount > 0)
+        {
+            // Enable re-run failures if needed
+            self.runTypes = [NSArray arrayWithObjects:kszAllTests, kszSelectedTests, kszFailingTests, nil];
+        }
+    }
 }
 
 -(void)setCurBundle:(NSBundle*)theBundle
@@ -253,27 +288,33 @@ static NSString* const kszSenTestAllTests = @"All tests";
     // Check XCode periodically to see if the main project has changed.
     // If so, reload the unit test bundles
     
-    NSString* project = [xcodeController currentProject];
-    if([project isEqualToString:curProject] == NO)
+    if(self.isBuilding == NO)
     {
-        [self setCurProject:project];
-        [self setBundles:[xcodeController unitTestBundles]];
-        if([bundles count] > 0)
+        NSString* project = [xcodeController currentProject];
+        if([project isEqualToString:curProject] == NO)
         {
-            [self loadBundle:[bundleButton titleOfSelectedItem]];            
-        }
-        else
-        {
-            dataSource.suites = [NSArray array];
-            dataSource.tests = [NSArray array];
-            [outlineView reloadData];
-        }
+            [self setCurProject:project];
+            [self setBundles:[xcodeController unitTestBundles]];
+            if([bundles count] > 0)
+            {
+                [self loadBundle:[bundleButton titleOfSelectedItem]];            
+            }
+            else
+            {
+                dataSource.suites = [NSArray array];
+                dataSource.tests = [NSArray array];
+                [outlineView reloadData];
+            }
+        }        
     }
 }
 
 -(void)runTestsThread
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+ 
+    testFailureCount = 0;
+    [resultLabel setStringValue:@"Running tests..."];
     NSString* transcript = [xcodeController runUnitTestBundle:[bundleButton titleOfSelectedItem]];
     (void)transcript;
     [pool release];
@@ -385,6 +426,48 @@ static NSString* const kszSenTestAllTests = @"All tests";
     {
         [self loadBundle:[bundleButton titleOfSelectedItem]];
     }
+}
+
+-(IBAction)filterTests:(id)sender
+{
+    NSString* filter = [sender titleOfSelectedItem];
+    if([filter isEqualToString:kszAllTests])
+    {
+        for(NSArray* tests in dataSource.tests)
+        {
+            for(SZTestDescriptor* test in tests)
+            {
+                test.enabled = NSOnState;
+            }
+        }
+    }
+    else if([filter isEqualToString:kszSelectedTests])
+    {
+        // Do nothing
+    }
+    else if([filter isEqualToString:kszFailingTests])
+    {
+        for(NSArray* tests in dataSource.tests)
+        {
+            for(SZTestDescriptor* test in tests)
+            {
+                const NSInteger state = (test.state == TestFailed) ? NSOnState : NSOffState;
+                test.enabled = state;
+            }
+        }
+    }
+    else
+    {
+        NSBeep();
+        NSLog(@"Unexpected filter: %@", filter);
+        assert(FALSE);
+    }
+    
+    for(SZTestDescriptor* suite in dataSource.suites)
+    {
+        [dataSource updateSuiteState:suite];
+    }
+    [outlineView reloadData];
 }
 
 -(IBAction)runTests:(id)sender
