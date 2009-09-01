@@ -36,6 +36,7 @@
 }
 -(NSString*)currentProject;
 -(NSArray*)unitTestBundles;
+-(NSArray*)unitTestConfigs:(NSString*)theBundleName;
 -(void)setTarget:(NSString*)theName;
 -(NSString*)runUnitTestBundle:(NSString*)theBundleName;
 -(NSString*)pathToBundle:(NSString*)theName;

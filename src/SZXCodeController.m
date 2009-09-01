@@ -83,6 +83,16 @@
     return result;
 }
 
+-(NSArray*)unitTestConfigs:(NSString*)theBundleName
+{
+    NSAppleEventDescriptor* nameDescr = [NSAppleEventDescriptor descriptorWithString:theBundleName];
+
+    NSArray* result = [scriptInterface runSubroutine:@"getUnitTestConfigs"
+                                            ofScript:script
+                                            withArgs:[NSArray arrayWithObject:nameDescr]];
+    return result;
+}
+
 -(NSString*)runUnitTestBundle:(NSString*)theBundleName
 {
     [self setTarget:theBundleName];

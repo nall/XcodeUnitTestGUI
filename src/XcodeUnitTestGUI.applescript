@@ -46,6 +46,18 @@ on getUnitTestBundles()
 	end tell
 end getUnitTestBundles
 
+on getUnitTestConfigs(theTargetName)
+	tell application "Xcode"
+		set theList to {}
+		set theTarget to my findTargetByName(theTargetName)
+		repeat with theBuildConf in build configurations of theTarget
+			set theList to theList & {name of theBuildConf}
+		end repeat
+		
+		return theList
+	end tell
+end getUnitTestConfigs
+
 on getUnitTestBundlePath(theTargetName)
 	tell application "Xcode"
 		set theTarget to my findTargetByName(theTargetName)

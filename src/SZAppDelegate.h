@@ -36,6 +36,7 @@
     NSString* curProject;
     NSArray* runTypes;
     NSArray* bundles;
+    NSArray* configs;
     NSBundle* curBundle;
     NSOperationQueue* queue;
     BOOL isBuilding;
@@ -49,10 +50,12 @@
     IBOutlet SZTestSuiteDataSource* dataSource;
     IBOutlet NSOutlineView* outlineView;
     IBOutlet NSPopUpButton* bundleButton;
+    IBOutlet NSPopUpButton* configButton;
     
     IBOutlet NSPopUpButton* runTypeButton;
     IBOutlet NSTextField* resultLabel;
 }
+@property (retain) NSArray* configs;
 @property (retain) NSArray* bundles;
 @property (retain) NSArray* runTypes;
 

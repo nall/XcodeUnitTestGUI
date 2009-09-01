@@ -38,6 +38,7 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
 @synthesize isBuilding;
 @synthesize testsValid;
 @synthesize bundles;
+@synthesize configs;
 @synthesize runTypes;
 
 -(void)applicationDidFinishLaunching:(NSNotification*)theNotification
@@ -90,6 +91,7 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     [queue release];
     [curProject release];
     [bundles release];
+    [configs release];
     [runTypes release];
 }
 
@@ -239,20 +241,6 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     return curBundle;
 }
 
--(void)setBundles:(NSArray*)theBundles
-{
-    [self willChangeValueForKey:@"bundles"];
-    [theBundles retain];
-    [bundles release];
-    bundles = theBundles;
-    [self didChangeValueForKey:@"bundles"];
-}
-
--(NSArray*)bundles
-{
-    return bundles;
-}
-
 -(void)setCurProject:(NSString*)theProject
 {
     [self willChangeValueForKey:@"curProject"];
@@ -298,13 +286,16 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
         NSString* project = [xcodeController currentProject];
         if([project isEqualToString:curProject] == NO)
         {
-            [resultLabel setStringValue:@""];
             self.testsValid = NO;
+            [resultLabel setStringValue:@""];
+            [self setConfigs:[NSArray array]];
+
             [self setCurProject:project];
             [self setBundles:[xcodeController unitTestBundles]];
             if([bundles count] > 0)
             {
                 [self loadBundle:[bundleButton titleOfSelectedItem]];            
+                [self setConfigs:[xcodeController unitTestConfigs:[bundleButton titleOfSelectedItem]]];
             }
             else
             {
@@ -327,6 +318,7 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     [resultLabel setStringValue:@"Running tests..."];
     NSString* transcript = [xcodeController runUnitTestBundle:[bundleButton titleOfSelectedItem]];
     (void)transcript;
+    
     [pool release];
     self.isBuilding = NO;
 }
@@ -435,6 +427,7 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     if([bundles count] > 0)
     {
         [self loadBundle:[bundleButton titleOfSelectedItem]];
+        [self setConfigs:[xcodeController unitTestConfigs:[bundleButton titleOfSelectedItem]]];
     }
 }
 
@@ -488,7 +481,7 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     [outlineView reloadData];
     
     NSString* target = [bundleButton titleOfSelectedItem];
-    NSString* buildConf = @"Debug"; // TODO -- make UI for this
+    NSString* buildConf = [configButton titleOfSelectedItem];
     NSString* setting = @"OTHER_TEST_FLAGS";
     NSString* values = [self generateCommandLine];
 
