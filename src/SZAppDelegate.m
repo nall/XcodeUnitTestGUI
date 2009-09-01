@@ -355,12 +355,11 @@ static NSString* const kszSenTestAllTests = @"All tests";
                                @"-SenTestObserverClass SZSenTestNotifier -XcodeUnitTestGUI "];
     for(SZTestDescriptor* suite in dataSource.suites)
     {
-        const NSInteger state = [dataSource suiteState:suite.index];
-        if(state == NSOnState)
+        if(suite.enabled == NSOnState)
         {
             [string appendFormat:@"%@,", suite.name];
         }
-        else if(state == NSMixedState)
+        else if(suite.enabled == NSMixedState)
         {
             for(SZTestDescriptor* test in [dataSource.tests objectAtIndex:suite.index])
             {

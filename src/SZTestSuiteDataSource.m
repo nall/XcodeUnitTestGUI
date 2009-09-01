@@ -47,7 +47,7 @@
         [enableCell setButtonType:NSSwitchButton];
         [enableCell setStringValue:@""];
         [enableCell setAlternateTitle:@""];
-        [enableCell setAttributedTitle:@""];
+        [enableCell setAttributedTitle:[[[NSAttributedString alloc] initWithString:@""] autorelease]];
         [enableCell setTarget:self];
         [enableCell setAction:@selector(enableClicked:)];
         
@@ -65,47 +65,48 @@
     [super dealloc];
 }
 
--(NSInteger)suiteState:(const NSUInteger)theIndex
-{
-    NSInteger buttonState = NSOnState;
-    
-    NSArray* testArray = [tests objectAtIndex:theIndex];
-    BOOL foundOn = NO;
-    for(SZTestDescriptor* t in testArray)
-    {
-        if(t.enabled == NO)
-        {
-            // If we find anything off, transition to mixed
-            buttonState = NSMixedState;
-        }
-        
-        // Track if we found any that were on
-        foundOn |= t.enabled;
-    }
-    
-    // If we found none on, transition to off
-    if(foundOn == NO)
-    {
-        buttonState = NSOffState;
-    }
-    
-    return buttonState;
-}
-
 -(void)enableClicked:(id)sender
 {
     const NSUInteger row = [outlineView clickedRow];
     SZTestDescriptor* t = [outlineView itemAtRow:row];
     if(t.type == TestcaseType)
     {
-        t.enabled = !t.enabled;      
+        assert(t.enabled == NSOnState || t.enabled == NSOffState);
+        t.enabled = (t.enabled == NSOnState) ? NSOffState : NSOnState;
+        
+        // Update suite state
+        {
+            SZTestDescriptor* suite = [outlineView parentForItem:t];
+            NSArray* testArray = [tests objectAtIndex:suite.index];
+            
+            NSInteger buttonState = NSOnState;
+            BOOL foundOn = NO;
+            for(SZTestDescriptor* test in testArray)
+            {
+                if(test.enabled == NO)
+                {
+                    // If we find anything off, transition to mixed
+                    buttonState = NSMixedState;
+                }
+                
+                // Track if we found any that were on
+                foundOn |= test.enabled;
+            }
+            
+            // If we found none on, transition to off
+            if(foundOn == NO)
+            {
+                buttonState = NSOffState;
+            }
+            
+            suite.enabled = buttonState;
+        }
     }
     else
     {
-        const NSInteger state = [self suiteState:t.index];
         BOOL updateTests = NO;
-        NSInteger newState = state;
-        switch(state)
+        NSInteger newState = t.enabled;
+        switch(t.enabled)
         {
             case NSOffState:
             {
@@ -125,7 +126,7 @@
                 break;
             default:
                 NSBeep();
-                NSLog(@"Unexpected Button State: %d", state);
+                NSLog(@"Unexpected Button State: %d", t.enabled);
         }
         
         if(updateTests)
@@ -133,10 +134,11 @@
             NSArray* testArray = [tests objectAtIndex:t.index];
             for(SZTestDescriptor* test in testArray)
             {
-                test.enabled = (newState == NSOnState) ? YES : NO;
+                assert(newState != NSMixedState);
+                test.enabled = newState;
             }
             
-            t.enabled = (newState == NSOnState) ? YES : NO;
+            t.enabled = newState;
         }
     }
     [outlineView reloadData];
@@ -211,14 +213,7 @@
     else
     {
         NSButtonCell* c = theCell;
-        if(test.type == TestcaseType)
-        {
-            [c setState:(test.enabled) ? NSOnState : NSOffState];            
-        }
-        else
-        {
-            [c setState:[self suiteState:test.index]];
-        }
+        [c setState:test.enabled];
     }
     
 }

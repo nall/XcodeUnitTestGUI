@@ -44,7 +44,7 @@
         self.name = theName;
         self.state = TestUnknown;
         self.type = TestsuiteType;
-        self.enabled = YES;
+        self.enabled = NSOnState;
         self.index = ~0;
     }
     return self;
@@ -59,7 +59,7 @@
         parentName = [theSuiteName retain];
         self.state = TestUnknown;
         self.type = TestcaseType;
-        self.enabled = YES;
+        self.enabled = NSOnState;
         self.index = ~0;
     }
     return self;    

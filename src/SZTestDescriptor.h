@@ -47,7 +47,7 @@ enum TestState
     enum TestState state;
     NSString* name;
     NSString* parentName;
-    BOOL enabled;
+    NSInteger enabled;
     NSUInteger index;
 }
 -(id)initSuite:(NSString*)theName;
@@ -55,7 +55,7 @@ enum TestState
 
 @property (assign) enum TestType type;
 @property (assign) enum TestState state;
-@property (assign) BOOL enabled;
+@property (assign) NSInteger enabled;
 @property (retain) NSString* name;
 @property (assign) NSUInteger index;
 @end
