@@ -1582,7 +1582,7 @@
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
-			<object class="NSUserDefaultsController" id="787405579">
+			<object class="NSUserDefaultsController" id="828851239">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
@@ -2191,14 +2191,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">bundleButton</string>
-						<reference key="source" ref="637706487"/>
-						<reference key="destination" ref="1042491391"/>
-					</object>
-					<int key="connectionID">488</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="1045869519"/>
 						<reference key="destination" ref="317929489"/>
@@ -2388,6 +2380,14 @@
 						</object>
 					</object>
 					<int key="connectionID">539</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">targetButton</string>
+						<reference key="source" ref="637706487"/>
+						<reference key="destination" ref="1042491391"/>
+					</object>
+					<int key="connectionID">545</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3545,7 +3545,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">540</int>
-						<reference key="object" ref="787405579"/>
+						<reference key="object" ref="828851239"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -3943,9 +3943,9 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{323, 347}, {270, 443}}</string>
+					<string>{{1169, 325}, {270, 443}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{323, 347}, {270, 443}}</string>
+					<string>{{1169, 325}, {270, 443}}</string>
 					<integer value="1"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<boolean value="YES"/>
@@ -4085,7 +4085,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">544</int>
+			<int key="maxID">545</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4112,20 +4112,20 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>bundleButton</string>
 							<string>configButton</string>
 							<string>dataSource</string>
 							<string>outlineView</string>
 							<string>resultLabel</string>
 							<string>runTypeButton</string>
+							<string>targetButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSPopUpButton</string>
-							<string>NSPopUpButton</string>
 							<string>SZTestSuiteDataSource</string>
 							<string>NSOutlineView</string>
 							<string>NSTextField</string>
+							<string>NSPopUpButton</string>
 							<string>NSPopUpButton</string>
 						</object>
 					</object>

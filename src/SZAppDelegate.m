@@ -257,7 +257,7 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
 
 -(void)loadBundle:(NSString*)theBundleName
 {
-    NSString* basePath = [xcodeController pathToBundle:theBundleName];
+    NSString* basePath = [xcodeController pathToTarget:theBundleName];
     [self setCurBundle:[NSBundle bundleWithPath:basePath]];
     if(curBundle == nil)
     {
@@ -291,11 +291,11 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
             [self setConfigs:[NSArray array]];
 
             [self setCurProject:project];
-            [self setBundles:[xcodeController unitTestBundles]];
+            [self setBundles:[xcodeController unitTestTargets]];
             if([bundles count] > 0)
             {
-                [self loadBundle:[bundleButton titleOfSelectedItem]];            
-                [self setConfigs:[xcodeController unitTestConfigs:[bundleButton titleOfSelectedItem]]];
+                [self loadBundle:[targetButton titleOfSelectedItem]];            
+                [self setConfigs:[xcodeController unitTestConfigs:[targetButton titleOfSelectedItem]]];
             }
             else
             {
@@ -316,7 +316,8 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     suiteFailureCount = 0;
     suiteTotalCount = 0;
     [resultLabel setStringValue:@"Running tests..."];
-    NSString* transcript = [xcodeController runUnitTestBundle:[bundleButton titleOfSelectedItem]];
+    NSString* transcript = [xcodeController runUnitTestTarget:[targetButton titleOfSelectedItem]
+                                                   withConfig:[configButton titleOfSelectedItem]];
     (void)transcript;
     
     [pool release];
@@ -426,8 +427,8 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
 {
     if([bundles count] > 0)
     {
-        [self loadBundle:[bundleButton titleOfSelectedItem]];
-        [self setConfigs:[xcodeController unitTestConfigs:[bundleButton titleOfSelectedItem]]];
+        [self loadBundle:[targetButton titleOfSelectedItem]];
+        [self setConfigs:[xcodeController unitTestConfigs:[targetButton titleOfSelectedItem]]];
     }
 }
 
@@ -480,7 +481,10 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     [dataSource invalidateStates];
     [outlineView reloadData];
     
-    NSString* target = [bundleButton titleOfSelectedItem];
+    [xcodeController setTarget:[targetButton titleOfSelectedItem]
+                    withConfig:[configButton titleOfSelectedItem]];
+    
+    NSString* target = [targetButton titleOfSelectedItem];
     NSString* buildConf = [configButton titleOfSelectedItem];
     NSString* setting = @"OTHER_TEST_FLAGS";
     NSString* values = [self generateCommandLine];

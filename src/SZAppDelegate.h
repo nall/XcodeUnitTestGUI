@@ -49,7 +49,7 @@
     
     IBOutlet SZTestSuiteDataSource* dataSource;
     IBOutlet NSOutlineView* outlineView;
-    IBOutlet NSPopUpButton* bundleButton;
+    IBOutlet NSPopUpButton* targetButton;
     IBOutlet NSPopUpButton* configButton;
     
     IBOutlet NSPopUpButton* runTypeButton;

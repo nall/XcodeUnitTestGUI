@@ -32,7 +32,7 @@ on getCurrentTarget()
 	end tell
 end getCurrentTarget
 
-on getUnitTestBundles()
+on getUnitTestTargets()
 	tell application "Xcode"
 		set theList to {}
 		set theProject to project of active project document
@@ -44,7 +44,7 @@ on getUnitTestBundles()
 		
 		return theList
 	end tell
-end getUnitTestBundles
+end getUnitTestTargets
 
 on getUnitTestConfigs(theTargetName)
 	tell application "Xcode"
@@ -58,18 +58,20 @@ on getUnitTestConfigs(theTargetName)
 	end tell
 end getUnitTestConfigs
 
-on getUnitTestBundlePath(theTargetName)
+on getUnitTestTargetPath(theTargetName)
 	tell application "Xcode"
 		set theTarget to my findTargetByName(theTargetName)
 		set theProduct to product reference of theTarget
 		return full path of theProduct
 	end tell
-end getUnitTestBundlePath
+end getUnitTestTargetPath
 
-on setCurrentTarget(theTargetName)
+on setCurrentTarget(theTargetName, theConfigName)
 	tell application "Xcode"
 		set theTarget to my findTargetByName(theTargetName)
 		set active target of project of active project document to theTarget
+		set theConf to my findBuildConfByName(theConfigName, theTarget)
+		set active build configuration type of project of active project document to theConf
 	end tell
 end setCurrentTarget
 
@@ -84,6 +86,17 @@ on findTargetByName(theName)
 		return null
 	end tell
 end findTargetByName
+
+on findBuildConfByName(theName, theTarget)
+	tell application "Xcode"
+		repeat with theConf in build configurations of theTarget
+			if name of theConf is theName then
+				return theConf
+			end if
+		end repeat
+		return null
+	end tell
+end findBuildConfByName
 
 on getActiveProjectName()
 	tell application "Xcode"
@@ -119,14 +132,13 @@ end isTargetUnitTest
 on modifyBuildSetting(theTargetName, theBuildConfName, theSettingName, theSettingValue)
 	tell application "Xcode"
 		set theTarget to my findTargetByName(theTargetName)
-		repeat with theBuildConf in build configurations of theTarget
-			if name of theBuildConf is theBuildConfName then
-				repeat with theSetting in build settings of theBuildConf
-					if name of theSetting is theSettingName then
-						set value of theSetting to theSettingValue
-					end if
-				end repeat
-			end if
-		end repeat
+		set theBuildConf to my findBuildConfByName(theBuildConfName, theTarget)
+		if theBuildConf is not null then
+			repeat with theSetting in build settings of theBuildConf
+				if name of theSetting is theSettingName then
+					set value of theSetting to theSettingValue
+				end if
+			end repeat
+		end if
 	end tell
 end modifyBuildSetting

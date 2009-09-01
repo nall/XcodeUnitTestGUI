@@ -75,17 +75,17 @@
     return result;    
 }
 
--(NSArray*)unitTestBundles
+-(NSArray*)unitTestTargets
 {
-    NSArray* result = [scriptInterface runSubroutine:@"getUnitTestBundles"
+    NSArray* result = [scriptInterface runSubroutine:@"getUnitTestTargets"
                                             ofScript:script
                                             withArgs:[NSArray array]];
     return result;
 }
 
--(NSArray*)unitTestConfigs:(NSString*)theBundleName
+-(NSArray*)unitTestConfigs:(NSString*)theTargetName
 {
-    NSAppleEventDescriptor* nameDescr = [NSAppleEventDescriptor descriptorWithString:theBundleName];
+    NSAppleEventDescriptor* nameDescr = [NSAppleEventDescriptor descriptorWithString:theTargetName];
 
     NSArray* result = [scriptInterface runSubroutine:@"getUnitTestConfigs"
                                             ofScript:script
@@ -93,9 +93,11 @@
     return result;
 }
 
--(NSString*)runUnitTestBundle:(NSString*)theBundleName
+-(NSString*)runUnitTestTarget:(NSString*)theTargetName
+                   withConfig:(NSString*)theConfigName
 {
-    [self setTarget:theBundleName];
+    [self setTarget:theTargetName
+         withConfig:theConfigName];
     
     NSString* result = [scriptInterface runSubroutine:@"doBuild"
                                              ofScript:script
@@ -103,18 +105,21 @@
     return result;
 }
 
--(void)setTarget:(NSString*)theName
+-(void)setTarget:(NSString*)theTargetName
+      withConfig:(NSString*)theConfigName;
 {
-    NSAppleEventDescriptor* nameDescr = [NSAppleEventDescriptor descriptorWithString:theName];
+    NSAppleEventDescriptor* targetDescr = [NSAppleEventDescriptor descriptorWithString:theTargetName];
+    NSAppleEventDescriptor* configDescr = [NSAppleEventDescriptor descriptorWithString:theConfigName];
+
     [scriptInterface runSubroutine:@"setCurrentTarget"
                           ofScript:script
-                          withArgs:[NSArray arrayWithObject:nameDescr]];
+                          withArgs:[NSArray arrayWithObjects:targetDescr, configDescr, nil]];
 }
 
--(NSString*)pathToBundle:(NSString*)theName
+-(NSString*)pathToTarget:(NSString*)theName
 {
     NSAppleEventDescriptor* nameDescr = [NSAppleEventDescriptor descriptorWithString:theName];
-    NSString* result = [scriptInterface runSubroutine:@"getUnitTestBundlePath"
+    NSString* result = [scriptInterface runSubroutine:@"getUnitTestTargetPath"
                                              ofScript:script
                                              withArgs:[NSArray arrayWithObject:nameDescr]];
     return result;
