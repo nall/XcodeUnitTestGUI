@@ -34,6 +34,9 @@
 {
     SZXCodeController* xcodeController;
     NSString* curProject;
+    NSString* curTarget;
+    NSString* curConfig;
+
     NSArray* runTypes;
     NSArray* bundles;
     NSArray* configs;
@@ -62,7 +65,13 @@
 @property (assign) BOOL isBuilding;
 @property (assign) BOOL testsValid;
 @property (readonly) BOOL runEnabled;
+
+@property (retain) NSString* curProject;
+@property (retain) NSString* curTarget;
+@property (retain) NSString* curConfig;
+
 -(IBAction)bundleChanged:(id)sender;
+-(IBAction)configChanged:(id)sender;
 -(IBAction)runTests:(id)sender;
 -(IBAction)filterTests:(id)sender;
 @end

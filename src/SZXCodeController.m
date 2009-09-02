@@ -93,27 +93,46 @@
     return result;
 }
 
--(NSString*)runUnitTestTarget:(NSString*)theTargetName
-                   withConfig:(NSString*)theConfigName
-{
-    [self setTarget:theTargetName
-         withConfig:theConfigName];
-    
+-(NSString*)runUnitTest
+{    
     NSString* result = [scriptInterface runSubroutine:@"doBuild"
                                              ofScript:script
                                              withArgs:[NSArray array]];
     return result;
 }
 
--(void)setTarget:(NSString*)theTargetName
-      withConfig:(NSString*)theConfigName;
+-(NSString*)currentBuildConfig
+{
+    NSString* result = [scriptInterface runSubroutine:@"getCurrentBuildConfig"
+                                             ofScript:script
+                                             withArgs:[NSArray array]];    
+    return result;
+}
+
+-(void)setCurrentBuildConfig:(NSString*)theConfigName
+{
+    NSAppleEventDescriptor* configName = [NSAppleEventDescriptor descriptorWithString:theConfigName];
+    
+    [scriptInterface runSubroutine:@"setCurrentBuildConfig"
+                          ofScript:script
+                          withArgs:[NSArray arrayWithObject:configName]];    
+}
+
+-(NSString*)currentTarget
+{
+    NSString* result = [scriptInterface runSubroutine:@"getCurrentTarget"
+                                             ofScript:script
+                                             withArgs:[NSArray array]];    
+    return result;
+}
+
+-(void)setCurrentTarget:(NSString*)theTargetName
 {
     NSAppleEventDescriptor* targetDescr = [NSAppleEventDescriptor descriptorWithString:theTargetName];
-    NSAppleEventDescriptor* configDescr = [NSAppleEventDescriptor descriptorWithString:theConfigName];
 
     [scriptInterface runSubroutine:@"setCurrentTarget"
                           ofScript:script
-                          withArgs:[NSArray arrayWithObjects:targetDescr, configDescr, nil]];
+                          withArgs:[NSArray arrayWithObject:targetDescr]];
 }
 
 -(NSString*)pathToTarget:(NSString*)theName

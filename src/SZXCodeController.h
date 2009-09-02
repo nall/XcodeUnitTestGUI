@@ -35,13 +35,21 @@
     NSAppleScript* script;
 }
 -(NSString*)currentProject;
+
 -(NSArray*)unitTestTargets;
+
 -(NSArray*)unitTestConfigs:(NSString*)theTargetName;
--(void)setTarget:(NSString*)theTargetName
-      withConfig:(NSString*)theConfigName;
--(NSString*)runUnitTestTarget:(NSString*)theTargetName
-                   withConfig:(NSString*)theConfigName;
+
+-(NSString*)currentBuildConfig;
+-(void)setCurrentBuildConfig:(NSString*)theConfigName;
+
+-(NSString*)currentTarget;
+-(void)setCurrentTarget:(NSString*)theTargetName;
+
+-(NSString*)runUnitTest;
+
 -(NSString*)pathToTarget:(NSString*)theName;
+
 -(void)updateBuildSetting:(NSString*)theTargetName
                 buildConf:(NSString*)theBuildConf
               settingName:(NSString*)theSettingName

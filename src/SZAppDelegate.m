@@ -41,6 +41,10 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
 @synthesize configs;
 @synthesize runTypes;
 
+@synthesize curProject;
+@synthesize curTarget;
+@synthesize curConfig;
+
 -(void)applicationDidFinishLaunching:(NSNotification*)theNotification
 {
     xcodeController = [[SZXCodeController alloc] init];
@@ -241,24 +245,16 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     return curBundle;
 }
 
--(void)setCurProject:(NSString*)theProject
+-(void)loadBundle
 {
-    [self willChangeValueForKey:@"curProject"];
-    [theProject retain];
-    [curProject release];
-    curProject = theProject;
-    [self didChangeValueForKey:@"curProject"];
-}
-
--(NSString*)curProject
-{
-    return curProject;
-}
-
--(void)loadBundle:(NSString*)theBundleName
-{
-    NSString* basePath = [xcodeController pathToTarget:theBundleName];
+    NSString* basePath = [xcodeController pathToTarget:[targetButton titleOfSelectedItem]];
     [self setCurBundle:[NSBundle bundleWithPath:basePath]];
+    
+    // Clear out the outline view. If we find stuff in bundleDidLoad we'll re-populate it
+    dataSource.suites = [NSArray array];
+    dataSource.tests = [NSArray array];
+    [outlineView reloadData];
+    
     if(curBundle == nil)
     {
         NSLog(@"ERROR Loading Bundle");
@@ -280,29 +276,44 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
 {
     // Check XCode periodically to see if the main project has changed.
     // If so, reload the unit test bundles
-    
-    if(self.isBuilding == NO)
-    {
-        NSString* project = [xcodeController currentProject];
-        if([project isEqualToString:curProject] == NO)
-        {
-            self.testsValid = NO;
-            [resultLabel setStringValue:@""];
-            [self setConfigs:[NSArray array]];
 
-            [self setCurProject:project];
-            [self setBundles:[xcodeController unitTestTargets]];
-            if([bundles count] > 0)
+    @synchronized(self)
+    {
+        if(self.isBuilding == NO)
+        {
+            NSString* project = [xcodeController currentProject];
+            NSString* target = [xcodeController currentTarget];
+            NSString* config = [xcodeController currentBuildConfig];
+            
+            // Something changed. Reload.
+            if([project isEqualToString:curProject] == NO ||
+               [target isEqualToString:curTarget] == NO ||
+               [config isEqualToString:curConfig] == NO)
             {
-                [self loadBundle:[targetButton titleOfSelectedItem]];            
-                [self setConfigs:[xcodeController unitTestConfigs:[targetButton titleOfSelectedItem]]];
-            }
-            else
-            {
-                dataSource.suites = [NSArray array];
-                dataSource.tests = [NSArray array];
-                [outlineView reloadData];
-            }
+                self.testsValid = NO;
+                [resultLabel setStringValue:@""];
+                [self setConfigs:[NSArray array]];
+                
+                [self setCurProject:project];
+                [self setCurTarget:target];
+                [self setCurConfig:config];
+                
+                [self setBundles:[xcodeController unitTestTargets]];
+                
+                if([bundles count] > 0)
+                {
+                    [self setConfigs:[xcodeController unitTestConfigs:[targetButton titleOfSelectedItem]]];
+                    [configButton selectItemWithTitle:config];
+                    
+                    [self loadBundle];
+                }
+                else
+                {
+                    dataSource.suites = [NSArray array];
+                    dataSource.tests = [NSArray array];
+                    [outlineView reloadData];
+                }
+            }        
         }        
     }
 }
@@ -316,8 +327,8 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     suiteFailureCount = 0;
     suiteTotalCount = 0;
     [resultLabel setStringValue:@"Running tests..."];
-    NSString* transcript = [xcodeController runUnitTestTarget:[targetButton titleOfSelectedItem]
-                                                   withConfig:[configButton titleOfSelectedItem]];
+    NSString* transcript = [xcodeController runUnitTest];
+    
     (void)transcript;
     
     [pool release];
@@ -425,12 +436,28 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
 
 -(IBAction)bundleChanged:(id)sender
 {
-    if([bundles count] > 0)
+    @synchronized(self)
     {
-        [self loadBundle:[targetButton titleOfSelectedItem]];
-        [self setConfigs:[xcodeController unitTestConfigs:[targetButton titleOfSelectedItem]]];
+        if([bundles count] > 0)
+        {
+            [xcodeController setCurrentTarget:[targetButton titleOfSelectedItem]];
+            [self setConfigs:[xcodeController unitTestConfigs:[targetButton titleOfSelectedItem]]];
+            [configButton selectItemWithTitle:[xcodeController currentBuildConfig]];
+            
+            [self loadBundle];
+        }
     }
 }
+
+-(IBAction)configChanged:(id)sender
+{
+    @synchronized(self)
+    {
+        [xcodeController setCurrentBuildConfig:[configButton titleOfSelectedItem]];
+        [self loadBundle];        
+    }
+}
+
 
 -(IBAction)filterTests:(id)sender
 {
@@ -481,8 +508,8 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     [dataSource invalidateStates];
     [outlineView reloadData];
     
-    [xcodeController setTarget:[targetButton titleOfSelectedItem]
-                    withConfig:[configButton titleOfSelectedItem]];
+    [xcodeController setCurrentTarget:[targetButton titleOfSelectedItem]];
+    [xcodeController setCurrentBuildConfig:[configButton titleOfSelectedItem]];
     
     NSString* target = [targetButton titleOfSelectedItem];
     NSString* buildConf = [configButton titleOfSelectedItem];

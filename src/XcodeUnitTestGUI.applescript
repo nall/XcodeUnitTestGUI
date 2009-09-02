@@ -26,12 +26,6 @@
 -- FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 -- OTHER DEALINGS IN THE SOFTWARE.
 
-on getCurrentTarget()
-	tell application "Xcode"
-		return active target of project of active project document
-	end tell
-end getCurrentTarget
-
 on getUnitTestTargets()
 	tell application "Xcode"
 		set theList to {}
@@ -66,14 +60,35 @@ on getUnitTestTargetPath(theTargetName)
 	end tell
 end getUnitTestTargetPath
 
-on setCurrentTarget(theTargetName, theConfigName)
+on getCurrentTarget()
+	tell application "Xcode"
+		set theTarget to active target of project of active project document
+		return name of theTarget
+	end tell
+end getCurrentTarget
+
+on setCurrentTarget(theTargetName)
 	tell application "Xcode"
 		set theTarget to my findTargetByName(theTargetName)
 		set active target of project of active project document to theTarget
-		set theConf to my findBuildConfByName(theConfigName, theTarget)
-		set active build configuration type of project of active project document to theConf
 	end tell
 end setCurrentTarget
+
+on getCurrentBuildConfig()
+	tell application "Xcode"
+		return name of active build configuration type of project of active project document
+	end tell
+end getCurrentBuildConfig
+
+on setCurrentBuildConfig(theConfigName)
+	tell application "Xcode"
+		set theConf to my findBuildConfByName(theConfigName)
+		if theConf is null then
+			display dialog "Cannot find build configuration " & theConfigName & " in project"
+		end if
+		set active build configuration type of project of active project document to theConf
+	end tell
+end setCurrentBuildConfig
 
 on findTargetByName(theName)
 	tell application "Xcode"
@@ -87,9 +102,9 @@ on findTargetByName(theName)
 	end tell
 end findTargetByName
 
-on findBuildConfByName(theName, theTarget)
+on findBuildConfByName(theName)
 	tell application "Xcode"
-		repeat with theConf in build configurations of theTarget
+		repeat with theConf in build configurations of project of active project document
 			if name of theConf is theName then
 				return theConf
 			end if
@@ -126,6 +141,7 @@ on isTargetUnitTest(theTarget)
 		end if -- execute if this target is a bundle
 		
 		return foundOCTest
+		
 	end tell
 end isTargetUnitTest
 
@@ -139,6 +155,8 @@ on modifyBuildSetting(theTargetName, theBuildConfName, theSettingName, theSettin
 					set value of theSetting to theSettingValue
 				end if
 			end repeat
+		else
+			display dialog "Cannot find build config " & theBuildConfName & " for target " & theTargetName
 		end if
 	end tell
 end modifyBuildSetting

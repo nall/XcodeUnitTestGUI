@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="453"/>
+			<integer value="372"/>
 			<integer value="29"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -2350,44 +2350,20 @@
 					<int key="connectionID">537</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: runEnabled</string>
-						<reference key="source" ref="1042491391"/>
-						<reference key="destination" ref="637706487"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1042491391"/>
-							<reference key="NSDestination" ref="637706487"/>
-							<string key="NSLabel">enabled: runEnabled</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">runEnabled</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">538</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: runEnabled</string>
-						<reference key="source" ref="271742845"/>
-						<reference key="destination" ref="637706487"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="271742845"/>
-							<reference key="NSDestination" ref="637706487"/>
-							<string key="NSLabel">enabled: runEnabled</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">runEnabled</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">539</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">targetButton</string>
 						<reference key="source" ref="637706487"/>
 						<reference key="destination" ref="1042491391"/>
 					</object>
 					<int key="connectionID">545</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">configChanged:</string>
+						<reference key="source" ref="637706487"/>
+						<reference key="destination" ref="271742845"/>
+					</object>
+					<int key="connectionID">546</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3776,6 +3752,7 @@
 					<string>529.IBPluginDependency</string>
 					<string>530.IBPluginDependency</string>
 					<string>534.IBPluginDependency</string>
+					<string>540.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
 					<string>56.ImportedFromIB2</string>
 					<string>57.IBEditorWindowLastContentRect</string>
@@ -3943,9 +3920,9 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{1169, 325}, {270, 443}}</string>
+					<string>{{60, 165}, {270, 443}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{1169, 325}, {270, 443}}</string>
+					<string>{{60, 165}, {270, 443}}</string>
 					<integer value="1"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<boolean value="YES"/>
@@ -4035,6 +4012,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>{{156, 1069}, {306, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4085,7 +4063,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">545</int>
+			<int key="maxID">546</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4098,11 +4076,13 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>bundleChanged:</string>
+							<string>configChanged:</string>
 							<string>filterTests:</string>
 							<string>runTests:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
