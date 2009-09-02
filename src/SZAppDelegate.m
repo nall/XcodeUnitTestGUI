@@ -196,6 +196,7 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     }
     [outlineView reloadData];
     
+    NSLog(@"Suite finished: %@", name);
     if([name isEqualToString:kszTopLevelTestSuite])
     {
         // All tests complete. Print results.
@@ -326,11 +327,17 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     testTotalCount = 0;
     suiteFailureCount = 0;
     suiteTotalCount = 0;
-    [resultLabel setStringValue:@"Running tests..."];
+
+    [resultLabel setStringValue:@"Building & Running tests..."];
     NSString* transcript = [xcodeController runUnitTest];
-    
     (void)transcript;
     
+    if(suiteTotalCount == 0)
+    {
+        // No tests ran. Probably a build error
+        [resultLabel setStringValue:@"Possible build error. Check Xcode"];
+    }
+
     [pool release];
     self.isBuilding = NO;
 }
@@ -515,6 +522,7 @@ static NSString* const kszTopLevelTestSuite = @"XcodeUnitTestGUI";
     NSString* buildConf = [configButton titleOfSelectedItem];
     NSString* setting = @"OTHER_TEST_FLAGS";
     NSString* values = [self generateCommandLine];
+    NSLog(@"running [%@]", values);
 
     [xcodeController updateBuildSetting:target
                               buildConf:buildConf

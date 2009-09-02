@@ -1582,7 +1582,7 @@
 				<bool key="NSFilterRestrictsInsertion">YES</bool>
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
-			<object class="NSUserDefaultsController" id="828851239">
+			<object class="NSUserDefaultsController" id="547105814">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
@@ -2212,22 +2212,6 @@
 						<reference key="destination" ref="1045869519"/>
 					</object>
 					<int key="connectionID">496</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: runEnabled</string>
-						<reference key="source" ref="277005958"/>
-						<reference key="destination" ref="637706487"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="277005958"/>
-							<reference key="NSDestination" ref="637706487"/>
-							<string key="NSLabel">enabled: runEnabled</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">runEnabled</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">505</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -3521,7 +3505,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">540</int>
-						<reference key="object" ref="828851239"/>
+						<reference key="object" ref="547105814"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>

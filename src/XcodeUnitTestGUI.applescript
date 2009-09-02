@@ -113,6 +113,17 @@ on findBuildConfByName(theName)
 	end tell
 end findBuildConfByName
 
+on findBuildConfByNameInTarget(theName, theTarget)
+	tell application "Xcode"
+		repeat with theConf in build configurations of theTarget
+			if name of theConf is theName then
+				return theConf
+			end if
+		end repeat
+		return null
+	end tell
+end findBuildConfByNameInTarget
+
 on getActiveProjectName()
 	tell application "Xcode"
 		return name of project of active project document
@@ -148,15 +159,11 @@ end isTargetUnitTest
 on modifyBuildSetting(theTargetName, theBuildConfName, theSettingName, theSettingValue)
 	tell application "Xcode"
 		set theTarget to my findTargetByName(theTargetName)
-		set theBuildConf to my findBuildConfByName(theBuildConfName, theTarget)
-		if theBuildConf is not null then
-			repeat with theSetting in build settings of theBuildConf
-				if name of theSetting is theSettingName then
-					set value of theSetting to theSettingValue
-				end if
-			end repeat
-		else
-			display dialog "Cannot find build config " & theBuildConfName & " for target " & theTargetName
-		end if
+		set theBuildConf to my findBuildConfByNameInTarget(theBuildConfName, theTarget)
+		repeat with theSetting in build settings of theBuildConf
+			if name of theSetting is theSettingName then
+				set value of theSetting to theSettingValue
+			end if
+		end repeat
 	end tell
 end modifyBuildSetting
