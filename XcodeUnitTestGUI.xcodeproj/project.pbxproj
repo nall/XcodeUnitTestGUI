@@ -25,6 +25,7 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A43E3BBD104DAA6C00D7E987 /* SZSenTestNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E3BBC104DAA6C00D7E987 /* SZSenTestNotifier.m */; };
+		A4464E73104F6E5300D1355D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F02AE4104F62260047176B /* SenTestingKit.framework */; };
 		A4704C78104A4F56005B6A5D /* SZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704C77104A4F56005B6A5D /* SZAppDelegate.m */; };
 		A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D39104A7B55005B6A5D /* SZXCodeController.m */; };
 		A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */; };
@@ -82,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4464E73104F6E5300D1355D /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +324,10 @@
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -350,6 +356,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
@@ -434,6 +444,7 @@
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = /Developer/Library/Frameworks;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};

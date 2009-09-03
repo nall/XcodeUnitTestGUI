@@ -18,4 +18,13 @@ How are unit tests discovered?
 A unit test shows up if the active project has a built target which is a bundle with an extension of octest. If this is found, that bundle is loaded and queried to find classes deriving from SenTestCase with
 methods starting with "test". All such methods should show up.
 
+Basic Usage
+===========
+
+To use the program follow this sequence of events:
+
+  * Launch Xcode (if it's not already running)
+  * Navigate to the Xcode project with a unit test bundle and build it
+  * Launch XcodeUnitTestGUI
+  * At this point your suites/tests should be visible in the tool and you can select tests and run them from the tool
 
