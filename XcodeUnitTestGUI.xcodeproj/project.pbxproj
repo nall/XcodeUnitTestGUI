@@ -25,8 +25,6 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A43E3BBD104DAA6C00D7E987 /* SZSenTestNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E3BBC104DAA6C00D7E987 /* SZSenTestNotifier.m */; };
-		A43E3C3B104DB3F900D7E987 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */; };
-		A43E3C8C104DB6C800D7E987 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */; };
 		A4704C78104A4F56005B6A5D /* SZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704C77104A4F56005B6A5D /* SZAppDelegate.m */; };
 		A4704D3A104A7B55005B6A5D /* SZXCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D39104A7B55005B6A5D /* SZXCodeController.m */; };
 		A4704D3D104A7C20005B6A5D /* SZApplescriptInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A4704D3C104A7C20005B6A5D /* SZApplescriptInterface.m */; };
@@ -36,6 +34,7 @@
 		A497A2CE104ACD67004805E1 /* testStatePassed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2CC104ACD67004805E1 /* testStatePassed.tiff */; };
 		A497A2DA104ACED0004805E1 /* testStateUnknown.tiff in Resources */ = {isa = PBXBuildFile; fileRef = A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */; };
 		A497A373104AE821004805E1 /* SZTestDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = A497A372104AE821004805E1 /* SZTestDescriptor.m */; };
+		A4F02AE5104F62260047176B /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F02AE4104F62260047176B /* SenTestingKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +51,6 @@
 		A43E3BB6104DAA3700D7E987 /* XcodeUnitTestGUIHelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XcodeUnitTestGUIHelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A43E3BB7104DAA3700D7E987 /* XcodeUnitTestGUIHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XcodeUnitTestGUIHelper-Info.plist"; sourceTree = "<group>"; };
 		A43E3BBC104DAA6C00D7E987 /* SZSenTestNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZSenTestNotifier.m; sourceTree = "<group>"; };
-		A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = SDKROOT; };
 		A4704C76104A4F56005B6A5D /* SZAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZAppDelegate.h; sourceTree = "<group>"; };
 		A4704C77104A4F56005B6A5D /* SZAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZAppDelegate.m; sourceTree = "<group>"; };
 		A4704D38104A7B55005B6A5D /* SZXCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZXCodeController.h; sourceTree = "<group>"; };
@@ -67,6 +65,7 @@
 		A497A2D9104ACED0004805E1 /* testStateUnknown.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = testStateUnknown.tiff; path = resources/testStateUnknown.tiff; sourceTree = "<group>"; };
 		A497A371104AE821004805E1 /* SZTestDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTestDescriptor.h; sourceTree = "<group>"; };
 		A497A372104AE821004805E1 /* SZTestDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZTestDescriptor.m; sourceTree = "<group>"; };
+		A4F02AE4104F62260047176B /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = /Developer/Library/Frameworks/SenTestingKit.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				A43E3C8C104DB6C800D7E987 /* SenTestingKit.framework in Frameworks */,
+				A4F02AE5104F62260047176B /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A43E3C3B104DB3F900D7E987 /* SenTestingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,8 +109,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A43E3C3A104DB3F900D7E987 /* SenTestingKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				A4F02AE4104F62260047176B /* SenTestingKit.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -377,6 +375,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -394,6 +396,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = XcodeUnitTestGUI_Prefix.pch;
